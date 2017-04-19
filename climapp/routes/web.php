@@ -15,7 +15,22 @@ $app->get('/', function () use ($app) {
     return $app->version();
 });
 
-$app->group(['prefix' => 'api/v1','namespace' => 'App\Http\Controllers'], function($app)
+$app->group(['prefix' => 'api/v1'], function($app){
+	$app->group(['prefix' => 'users'], function () use ($app) {
+		    $app->get('/', 'ExampleController@index');
+	});
+	$app->group(['prefix' => 'books'], function () use ($app) {
+		    $app->get('/', 'ExampleController@index');
+	});      
+});
+
+
+$app->group(['prefix' => 'api/v2'], function($app)
 {
-    $app->get('book','ExampleController@index');
+    $app->group(['prefix' => 'users'], function () use ($app) {
+		    $app->get('/', 'ExampleController@index');
+	});
+	$app->group(['prefix' => 'books'], function () use ($app) {
+		    $app->get('/', 'ExampleController@index');
+	});
 });
