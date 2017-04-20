@@ -16,12 +16,13 @@ $app->get('/', function () use ($app) {
 });
 
 $app->group(['prefix' => 'api/v1'], function($app){
-	$app->group(['prefix' => 'users'], function () use ($app) {
-		    $app->get('/', 'ExampleController@index');
-	});
-	$app->group(['prefix' => 'books'], function () use ($app) {
-		    $app->get('/', 'ExampleController@index');
-	});      
+	$app->group(['prefix' => 'usuario'], function () use ($app) {
+		$app->get('/', 'UsuariosController@getAll');
+		$app->get('{id}', 'UsuariosController@get');
+		$app->post('/', 'UsuariosController@add');
+		$app->put('{id}', 'UsuariosController@put');
+		$app->delete('{id}', 'UsuariosController@remove');
+	});    
 });
 
 
