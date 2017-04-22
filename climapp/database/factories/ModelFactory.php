@@ -10,19 +10,30 @@
 | database. Just tell the factory how a default model should look.
 |
 */
-
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+/**
+ * Factory definition for model App\City.
+ */
+$factory->define(App\City::class, function ($faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->email,
+        'id_state' => $faker->fillable,
     ];
 });
 
 /**
- * Factory definition for model App\Task.
+ * Factory definition for model App\CityPerson.
  */
-$factory->define(App\Task::class, function ($faker) {
+$factory->define(App\CityPerson::class, function ($faker) {
     return [
-        'project_id' => $faker->key,
+        'id_city' => $faker->fillable,
+        'id_person' => $faker->fillable,
+    ];
+});
+
+/**
+ * Factory definition for model App\Person.
+ */
+$factory->define(App\Person::class, function ($faker) {
+    return [
+        // Fields here
     ];
 });

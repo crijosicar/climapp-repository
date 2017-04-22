@@ -16,22 +16,40 @@ $app->get('/', function () use ($app) {
 });
 
 $app->group(['prefix' => 'api/v1'], function($app){
-	$app->group(['prefix' => 'usuario'], function () use ($app) {
-		$app->get('/', 'UsuariosController@getAll');
-		$app->get('{id}', 'UsuariosController@get');
-		$app->post('/', 'UsuariosController@add');
-		$app->put('{id}', 'UsuariosController@put');
-		$app->delete('{id}', 'UsuariosController@remove');
-	});    
-});
-
-
-$app->group(['prefix' => 'api/v2'], function($app)
-{
-    $app->group(['prefix' => 'users'], function () use ($app) {
-		    $app->get('/', 'ExampleController@index');
+	$app->get('/', function () use ($app) {
+	    return $app->version();
 	});
-	$app->group(['prefix' => 'books'], function () use ($app) {
-		    $app->get('/', 'ExampleController@index');
+	/**
+	 * Routes for resource city
+	 */
+	$app->group(['prefix' => 'city'], function () use ($app) {
+		$app->get('/', 'CityController@all');
+		$app->get('{id}', 'CityController@get');
+		$app->post('/', 'CityController@add');
+		$app->put('{id}', 'CityController@put');
+		$app->delete('{id}', 'CityController@remove');
+	});
+
+
+	/**
+	 * Routes for resource city-person
+	 */
+	$app->group(['prefix' => 'city-person'], function () use ($app) {
+		$app->get('/', 'CityPersonController@all');
+		$app->get('{id}', 'CityPersonController@get');
+		$app->post('/', 'CityPersonController@add');
+		$app->put('{id}', 'CityPersonController@put');
+		$app->delete('{id}', 'CityPersonController@remove');
+	});
+	
+	/**
+	 * Routes for resource person
+	 */
+	$app->group(['prefix' => 'person'], function () use ($app) {
+		$app->get('/', 'PeopleController@all');
+		$app->get('{id}', 'PeopleController@get');
+		$app->post('/', 'PeopleController@add');
+		$app->put('{id}', 'PeopleController@put');
+		$app->delete('{id}', 'PeopleController@remove');
 	});
 });
