@@ -1,6 +1,3 @@
-php artisan wn:model City --fillable=id,code,id_state,latitude,longitude,name --rules="id=integer code=string|required id_state=integer|required latitude=string|required longitude=string|required name=string|required"
-
-
 php artisan wn:resource city "id;integer:unsigned;numeric;fillable code;string;required;fillable id_state;integer:unsigned;numeric;required;fillable latitude;string;required;fillable longitude;string;required;fillable longitude;string;required;fillable"
 
 
