@@ -37,3 +37,12 @@ $factory->define(App\Person::class, function ($faker) {
         // Fields here
     ];
 });
+
+/**
+ * Factory definition for model App\TUser.
+ */
+$factory->define(App\TUser::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});

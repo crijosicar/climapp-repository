@@ -12,6 +12,9 @@ class CityPerson extends Model {
         "id_city" => "numeric|required",
         "id_person" => "numeric|required",
     ];
+
+    public $timestamps = false;
+
     // Relationships
     protected $table = 'city_person';
 }

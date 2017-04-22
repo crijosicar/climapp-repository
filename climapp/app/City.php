@@ -16,6 +16,8 @@ class City extends Model {
         "name" => "string|required",
     ];
 
+    public $timestamps = false;
+
     // Relationships
     protected $table = 'city';
 

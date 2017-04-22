@@ -7,3 +7,5 @@ php artisan wn:resource city "id;integer:unsigned;numeric;fillable code;string;r
 php artisan wn:resource city_person "id;integer:unsigned;numeric;fillable code;string;required;fillable id_city;integer:unsigned;numeric;required;fillable id_person;integer:unsigned;numeric;required;fillable"
 
 php artisan wn:resource person "birth_date;date;required;date email;string;required;fillable id_born_city;numeric;required;fillable id_gender;numeric;required;fillable id_state;numeric;required;fillable last_name;string;required;fillable name;string;required;fillable phone;string;required;fillable" --add=timestamps 
+
+php artisan wn:resource t_user "id_person;numeric;;fillable password;string;required;fillable user_name;string;required;fillable"

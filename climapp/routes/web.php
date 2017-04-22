@@ -52,4 +52,17 @@ $app->group(['prefix' => 'api/v1'], function($app){
 		$app->put('{id}', 'PeopleController@put');
 		$app->delete('{id}', 'PeopleController@remove');
 	});
+
+	/**
+	 * Routes for resource t-user
+	 */
+	$app->group(['prefix' => 't-user'], function () use ($app) {
+		$app->get('/', 'TUsersController@all');
+		$app->get('{id}', 'TUsersController@get');
+		$app->post('/', 'TUsersController@add');
+		$app->put('{id}', 'TUsersController@put');
+		$app->delete('{id}', 'TUsersController@remove');
+	});
 });
+
+
