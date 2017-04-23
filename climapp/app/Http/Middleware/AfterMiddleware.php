@@ -6,7 +6,6 @@ class AfterMiddleware {
     public function handle($request, Closure $next)
     {
         $response = $next($request);
-        dd($response);
 
         // Perform action
 
