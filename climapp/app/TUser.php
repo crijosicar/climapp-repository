@@ -6,6 +6,8 @@ class TUser extends Model {
 
     protected $fillable = ["id_person", "password", "user_name"];
 
+    protected $guarded = ['id'];
+
     protected $dates = [];
 
     public static $rules = [

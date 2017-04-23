@@ -4,7 +4,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class CityPerson extends Model {
 
-    protected $fillable = ["id", "id_city", "id_person"];
+    protected $fillable = ["id_city", "id_person"];
+
+    protected $guarded = ['id'];
 
     protected $dates = [];
 

@@ -6,3 +6,7 @@ php artisan wn:resource city_person "id;integer:unsigned;numeric;fillable code;s
 php artisan wn:resource person "birth_date;date;required;date email;string;required;fillable id_born_city;numeric;required;fillable id_gender;numeric;required;fillable id_state;numeric;required;fillable last_name;string;required;fillable name;string;required;fillable phone;string;required;fillable" --add=timestamps 
 
 php artisan wn:resource t_user "id_person;numeric;;fillable password;string;required;fillable user_name;string;required;fillable"
+
+php artisan wn:resource user_access "id_user;numeric;required;fillable state_login;string;required;fillable state_token;string;required;fillable token;string;required;fillable login_date;date;required;date logout_date;date;required;date" --add=timestamps
+
+php artisan wn:resource value_list "category;string;required;fillable description;string;required;fillable value;string;required;fillable"

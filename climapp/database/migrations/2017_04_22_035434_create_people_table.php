@@ -8,7 +8,7 @@ class CreatePeopleTable extends Migration
 
     public function up()
     {
-        Schema::create('people', function(Blueprint $table) {
+        Schema::create('person', function(Blueprint $table) {
             $table->increments('id');
             $table->date('birth_date');
             $table->string('email');
@@ -25,6 +25,6 @@ class CreatePeopleTable extends Migration
 
     public function down()
     {
-        Schema::drop('people');
+        Schema::drop('person');
     }
 }

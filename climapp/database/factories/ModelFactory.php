@@ -46,3 +46,21 @@ $factory->define(App\TUser::class, function ($faker) {
         // Fields here
     ];
 });
+
+/**
+ * Factory definition for model App\UserAccess.
+ */
+$factory->define(App\UserAccess::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});
+
+/**
+ * Factory definition for model App\ValueList.
+ */
+$factory->define(App\ValueList::class, function ($faker) {
+    return [
+        // Fields here
+    ];
+});

@@ -10,21 +10,24 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
-
 $app->get('/', function () use ($app) {
     return $app->version();
 });
 
-$app->group(['prefix' => 'api/v1'], function($app){
+$app->group(['prefix' => 'api/v1' , 'middleware' => 'after'], function($app){
 	$app->get('/', function () use ($app) {
 	    return $app->version();
 	});
+
+	
 	/**
 	 * Routes for resource city
 	 */
 	$app->group(['prefix' => 'city'], function () use ($app) {
-		$app->get('/', 'CityController@all');
+		$app->get('/','CityController@all');
 		$app->get('{id}', 'CityController@get');
+	    $app->get('custom/{id}', 'CityController@customQuery');
+		$app->get('eloquent/{id}', 'CityController@eloquentQuery');
 		$app->post('/', 'CityController@add');
 		$app->put('{id}', 'CityController@put');
 		$app->delete('{id}', 'CityController@remove');
@@ -63,6 +66,26 @@ $app->group(['prefix' => 'api/v1'], function($app){
 		$app->put('{id}', 'TUsersController@put');
 		$app->delete('{id}', 'TUsersController@remove');
 	});
+
+	/**
+	 * Routes for resource user-access
+	 */
+	$app->group(['prefix' => 'user-access'], function () use ($app) {
+		$app->get('/', 'UserAccessesController@all');
+		$app->get('{id}', 'UserAccessesController@get');
+		$app->post('/', 'UserAccessesController@add');
+		$app->put('{id}', 'UserAccessesController@put');
+		$app->delete('{id}', 'UserAccessesController@remove');
+	});
+
+	/**
+	 * Routes for resource value-list
+	 */
+	$app->group(['prefix' => 'value-list'], function () use ($app) {
+		$app->get('/', 'ValueListsController@all');
+		$app->get('{id}', 'ValueListsController@get');
+		$app->post('/', 'ValueListsController@add');
+		$app->put('{id}', 'ValueListsController@put');
+		$app->delete('{id}', 'ValueListsController@remove');
+	});
 });
-
-

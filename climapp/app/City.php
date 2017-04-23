@@ -4,7 +4,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class City extends Model {
 
-    protected $fillable = ["id", "code", "id_state", "latitude", "longitude", "name"];
+    protected $fillable = ["code", "id_state", "latitude", "longitude", "name"];
+
+    protected $guarded = ['id'];
 
     protected $dates = [];
 
@@ -20,5 +22,4 @@ class City extends Model {
 
     // Relationships
     protected $table = 'city';
-
 }

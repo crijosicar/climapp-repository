@@ -6,6 +6,8 @@ class Person extends Model {
 
     protected $fillable = ["email", "id_born_city", "id_gender", "id_state", "last_name", "name", "phone"];
 
+    protected $guarded = ['id'];
+
     protected $dates = ["birth_date"];
 
     public static $rules = [
