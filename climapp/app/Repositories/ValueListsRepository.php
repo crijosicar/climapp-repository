@@ -3,7 +3,7 @@
 use Bosnadev\Repositories\Contracts\RepositoryInterface;
 use Bosnadev\Repositories\Eloquent\Repository;
 
-class ValueListRespository extends Repository {
+class ValueListsRepository extends Repository {
 
     public function model() {
         return 'App\ValueList';

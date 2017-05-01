@@ -2,18 +2,18 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Repositories\ValueListRespository;
+use App\Repositories\ValueListsRepository;
 
 class ValueListsController extends Controller {
     
-    private $valueListRespository;
+    private $valueListsRepository;
 
-    public function __construct(ValueListRespository $valueListRespository) {
-        $this->valueListRespository = $valueListRespository;
+    public function __construct(ValueListsRepository $valueListsRepository) {
+        $this->valueListsRepository = $valueListsRepository;
     }
     
     public function getAll() {
-        $MCityPerson = $this->valueListRespository->all();
+        $MCityPerson = $this->valueListsRepository->all();
         if(is_null($MCityPerson)){
             return response()->json($MCityPerson, Response::HTTP_NOT_FOUND);
         }
