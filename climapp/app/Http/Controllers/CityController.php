@@ -2,27 +2,73 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\City;
+use App\Repositories\CityRepository;
+use App\Repositories\Criteria\Cities\CitiesFromLA;
 
 class CityController extends Controller {
+    
+    private $cityRepository;
 
-    const MODEL = "App\City";
-
-    use RESTActions;
-
-    function customQuery($id){
-    	$city = City::where('name', '=', "hola")->take(10)->get();
-    	if(is_null($city)){
-    		return response()->json($city, Response::HTTP_NOT_FOUND);
-        }
-        return response()->json($city, Response::HTTP_OK);
+    public function __construct(CityRepository $cityRepository) {
+        $this->cityRepository = $cityRepository;
     }
-
-    function eloquentQuery($id){
-    	$city = City::findOrFail($id);
-    	if(is_null($city)){
-    		return response()->json($city, Response::HTTP_NOT_FOUND);
+    
+    public function getAll() {
+        $MCity = $this->cityRepository->all();
+        if(is_null($MCity)){
+            return response()->json($MCity, Response::HTTP_NOT_FOUND);
         }
-        return response()->json($city, Response::HTTP_OK);
+        return response()->json($MCity, Response::HTTP_OK);
+    }
+    
+    public function getAllCitiesFromLA() {
+        $this->cityRepository->pushCriteria(new CitiesFromLA());
+        $MCity = $this->cityRepository->all();
+        if(is_null($MCity)){
+            return response()->json($MCity, Response::HTTP_NOT_FOUND);
+        }
+        return response()->json($MCity, Response::HTTP_OK);
+    }
+    
+    public function getCityById(Request $request, $id) {
+        $fields = count($request->json()->all()) > 0 ? $request->json()->all() : ['*'];
+        $MCity = $this->cityRepository->find($id, $fields);
+        if(is_null($MCity)){
+            return response()->json($MCity, Response::HTTP_NOT_FOUND);
+        }
+        return response()->json($MCity, Response::HTTP_OK);
+    }
+    
+    public function getCityByCityName($cityName) {
+        $city = strtoupper($cityName);
+        $MCity = $this->cityRepository->findWhere([ 'name' => $city ]);
+        if(is_null($MCity)){
+            return response()->json($MCity, Response::HTTP_NOT_FOUND);
+        }
+        return response()->json($MCity, Response::HTTP_OK);
+    }
+    
+    public function getCityByLatitude($latitude) {
+        $MCity = $this->cityRepository->findAllBy('latitude', $latitude);
+        if(is_null($MCity)){
+            return response()->json($MCity, Response::HTTP_NOT_FOUND);
+        }
+        return response()->json($MCity, Response::HTTP_OK);
+    }
+    
+    public function addNewCity(Request $request){
+        $MCity = $this->cityRepository->create($request->all());
+        if(is_null($MCity)){
+            return response()->json($MCity, Response::HTTP_NOT_FOUND);
+        }
+        return response()->json($MCity, Response::HTTP_OK);
+    }
+    
+    public function updateCityById(Request $request, $id){
+        $MCity = $this->cityRepository->update($request->all(), $id);
+        if(is_null($MCity)){
+            return response()->json($MCity, Response::HTTP_NOT_FOUND);
+        }
+        return response()->json($MCity, Response::HTTP_OK);
     }
 }

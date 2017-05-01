@@ -19,18 +19,15 @@ $app->group(['prefix' => 'api/v1'], function($app){
 	    return $app->version();
 	});
 
-	
 	/**
 	 * Routes for resource city
 	 */
 	$app->group(['prefix' => 'city'], function () use ($app) {
-		$app->get('/','CityController@all');
-		$app->get('{id}', 'CityController@get');
-	    $app->get('custom/{id}', 'CityController@customQuery');
-		$app->get('eloquent/{id}', 'CityController@eloquentQuery');
-		$app->post('/', 'CityController@add');
-		$app->put('{id}', 'CityController@put');
-		$app->delete('{id}', 'CityController@remove');
+		$app->get('getAll','CityController@getAll');
+                $app->get('getCityByCityName/{cityName}', 'CityController@getCityByCityName');
+		$app->post('getCityById/{id}', 'CityController@getCityById');
+                $app->post('addNewCity', 'CityController@addNewCity');
+                $app->post('updateCityById/{id}', 'CityController@updateCityById');
 	});
 
 
@@ -38,22 +35,14 @@ $app->group(['prefix' => 'api/v1'], function($app){
 	 * Routes for resource city-person
 	 */
 	$app->group(['prefix' => 'city-person'], function () use ($app) {
-		$app->get('/', 'CityPersonController@all');
-		$app->get('{id}', 'CityPersonController@get');
-		$app->post('/', 'CityPersonController@add');
-		$app->put('{id}', 'CityPersonController@put');
-		$app->delete('{id}', 'CityPersonController@remove');
+                $app->get('/','CityPersonController@getAll');
 	});
 	
 	/**
 	 * Routes for resource person
 	 */
 	$app->group(['prefix' => 'person'], function () use ($app) {
-		$app->get('/', 'PeopleController@all');
-		$app->get('{id}', 'PeopleController@get');
-		$app->post('/', 'PeopleController@add');
-		$app->put('{id}', 'PeopleController@put');
-		$app->delete('{id}', 'PeopleController@remove');
+		$app->get('/', 'PeopleController@getll');
 	});
 
 	/**
@@ -61,10 +50,6 @@ $app->group(['prefix' => 'api/v1'], function($app){
 	 */
 	$app->group(['prefix' => 't-user'], function () use ($app) {
 		$app->get('/', 'TUsersController@all');
-		$app->get('{id}', 'TUsersController@get');
-		$app->post('/', 'TUsersController@add');
-		$app->put('{id}', 'TUsersController@put');
-		$app->delete('{id}', 'TUsersController@remove');
 	});
 
 	/**
@@ -72,10 +57,6 @@ $app->group(['prefix' => 'api/v1'], function($app){
 	 */
 	$app->group(['prefix' => 'user-access'], function () use ($app) {
 		$app->get('/', 'UserAccessesController@all');
-		$app->get('{id}', 'UserAccessesController@get');
-		$app->post('/', 'UserAccessesController@add');
-		$app->put('{id}', 'UserAccessesController@put');
-		$app->delete('{id}', 'UserAccessesController@remove');
 	});
 
 	/**
@@ -83,9 +64,5 @@ $app->group(['prefix' => 'api/v1'], function($app){
 	 */
 	$app->group(['prefix' => 'value-list'], function () use ($app) {
 		$app->get('/', 'ValueListsController@all');
-		$app->get('{id}', 'ValueListsController@get');
-		$app->post('/', 'ValueListsController@add');
-		$app->put('{id}', 'ValueListsController@put');
-		$app->delete('{id}', 'ValueListsController@remove');
 	});
 });

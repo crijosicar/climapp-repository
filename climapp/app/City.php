@@ -8,17 +8,17 @@ class City extends Model {
 
     protected $guarded = ['id'];
 
-    protected $dates = [];
+    protected $primaryKey = 'id';
+    
+    protected $dates = ['created_at','updated_at'];
 
     public static $rules = [
-        "code" => "string|required",
+        "code" => "string|unique:City|required",
         "id_state" => "integer|required",
         "latitude" => "string|required",
         "longitude" => "string|required",
         "name" => "string|required",
     ];
-
-    public $timestamps = false;
 
     // Relationships
     protected $table = 'city';

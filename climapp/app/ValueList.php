@@ -4,20 +4,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class ValueList extends Model {
 
-    protected $fillable = ["scategory", "description", "value"];
+    protected $fillable = ["category", "description", "value"];
 
     protected $guarded = ['id'];
+    
+    protected $primaryKey = 'id';
 
-    protected $dates = [];
+    protected $dates = ['created_at','updated_at'];
 
     public static $rules = [
         "category" => "required",
         "description" => "required",
         "value" => "required",
     ];
-
-    public $timestamps = false;
-
+    
     // Relationships
     protected $table = 'value_list';
 }
