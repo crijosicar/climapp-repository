@@ -23,7 +23,7 @@ $app->group(['prefix' => 'api/v1'], function($app){
 	 * Routes for resource city
 	 */
 	$app->group(['prefix' => 'city'], function () use ($app) {
-		$app->get('getAll','CityController@getAll');
+		$app->get('/', 'CityController@getAll');
                 $app->get('getCityByCityName/{cityName}', 'CityController@getCityByCityName');
 		$app->post('getCityById/{id}', 'CityController@getCityById');
                 $app->post('addNewCity', 'CityController@addNewCity');
@@ -42,27 +42,27 @@ $app->group(['prefix' => 'api/v1'], function($app){
 	 * Routes for resource person
 	 */
 	$app->group(['prefix' => 'person'], function () use ($app) {
-		$app->get('/', 'PeopleController@getll');
+		$app->get('/', 'PeopleController@getAll');
 	});
 
 	/**
 	 * Routes for resource t-user
 	 */
 	$app->group(['prefix' => 't-user'], function () use ($app) {
-		$app->get('/', 'TUsersController@all');
+		$app->get('/', 'TUsersController@getAll');
 	});
 
 	/**
 	 * Routes for resource user-access
 	 */
 	$app->group(['prefix' => 'user-access'], function () use ($app) {
-		$app->get('/', 'UserAccessesController@all');
+		$app->get('/', 'UserAccessesController@getAll');
 	});
 
 	/**
 	 * Routes for resource value-list
 	 */
 	$app->group(['prefix' => 'value-list'], function () use ($app) {
-		$app->get('/', 'ValueListsController@all');
+		$app->get('/', 'ValueListsController@getAll');
 	});
 });

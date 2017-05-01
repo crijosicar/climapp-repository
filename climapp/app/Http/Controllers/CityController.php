@@ -8,7 +8,7 @@ use App\Repositories\Criteria\Cities\CitiesFromLA;
 class CityController extends Controller {
     
     private $cityRepository;
-
+    
     public function __construct(CityRepository $cityRepository) {
         $this->cityRepository = $cityRepository;
     }
