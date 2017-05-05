@@ -32,7 +32,7 @@ class UserAccess extends Model {
      */
     public function setIdAttribute($value)
     {
-        $this->attributes['id'] = strtolower($value);
+        $this->attributes['id'] = $value;
     }
 
     /**
@@ -86,6 +86,50 @@ class UserAccess extends Model {
      * @return string
      */
     public function getStateLoginAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
+    /**
+     * Set the UserAccess's created_at.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setCreatedAtAttribute($value)
+    {
+        $this->attributes['created_at'] = $value;
+    }
+
+    /**
+     * Get the UserAccess's created_at.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getCreatedAtAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
+    /**
+     * Set the UserAccess's updated_at.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setUpdatedAtAttribute($value)
+    {
+        $this->attributes['updated_at'] = $value;
+    }
+
+    /**
+     * Get the UserAccess's updated_at.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getUpdatedAtAttribute($value)
     {
         return ucfirst($value);
     }

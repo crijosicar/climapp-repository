@@ -24,7 +24,7 @@ class City extends Model {
     protected $table = 'city';
 
     /**
-     * Set the city's id.
+     * Set the City's id.
      *
      * @param  string  $value
      * @return void
@@ -35,7 +35,7 @@ class City extends Model {
     }
 
     /**
-     * Get the city's id.
+     * Get the City's id.
      *
      * @param  string  $value
      * @return string
@@ -46,7 +46,7 @@ class City extends Model {
     }
 
     /**
-     * Set the city's code.
+     * Set the City's code.
      *
      * @param  string  $value
      * @return void
@@ -57,7 +57,7 @@ class City extends Model {
     }
 
     /**
-     * Get the city's code.
+     * Get the City's code.
      *
      * @param  string  $value
      * @return string
@@ -68,7 +68,7 @@ class City extends Model {
     }
 
     /**
-     * Set the city's id_state.
+     * Set the City's id_state.
      *
      * @param  string  $value
      * @return void
@@ -79,7 +79,7 @@ class City extends Model {
     }
 
     /**
-     * Get the city's id_state.
+     * Get the City's id_state.
      *
      * @param  string  $value
      * @return string
@@ -90,7 +90,7 @@ class City extends Model {
     }
 
     /**
-     * Set the city's latitude.
+     * Set the City's latitude.
      *
      * @param  string  $value
      * @return void
@@ -101,7 +101,7 @@ class City extends Model {
     }
 
     /**
-     * Get the city's latitude.
+     * Get the City's latitude.
      *
      * @param  string  $value
      * @return string
@@ -112,7 +112,7 @@ class City extends Model {
     }
 
     /**
-     * Set the city's longitude.
+     * Set the City's longitude.
      *
      * @param  string  $value
      * @return void
@@ -123,7 +123,7 @@ class City extends Model {
     }
 
     /**
-     * Get the city's longitude.
+     * Get the City's longitude.
      *
      * @param  string  $value
      * @return string
@@ -135,7 +135,7 @@ class City extends Model {
     
     
     /**
-     * Set the city's name.
+     * Set the City's name.
      *
      * @param  string  $value
      * @return void
@@ -146,7 +146,7 @@ class City extends Model {
     }
 
     /**
-     * Get the city's name.
+     * Get the City's name.
      *
      * @param  string  $value
      * @return string
@@ -157,18 +157,18 @@ class City extends Model {
     }
 
     /**
-     * Set the city's created_at.
+     * Set the City's created_at.
      *
      * @param  string  $value
      * @return void
      */
     public function setCreatedAtAttribute($value)
     {
-        $this->attributes['created_at'] = strtolower($value);
+        $this->attributes['created_at'] = $value;
     }
 
     /**
-     * Get the city's created_at.
+     * Get the City's created_at.
      *
      * @param  string  $value
      * @return string
@@ -179,18 +179,18 @@ class City extends Model {
     }
 
      /**
-     * Set the city's updated_at.
+     * Set the City's updated_at.
      *
      * @param  string  $value
      * @return void
      */
     public function setUpdatedAtAttribute($value)
     {
-        $this->attributes['updated_at'] = strtolower($value);
+        $this->attributes['updated_at'] = $value;
     }
 
     /**
-     * Get the city's updated_at.
+     * Get the City's updated_at.
      *
      * @param  string  $value
      * @return string
