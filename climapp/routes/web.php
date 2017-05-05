@@ -24,7 +24,7 @@ $app->group(['prefix' => 'api/v1'], function($app){
 	*/
 	$app->group(['prefix' => 'city'], function () use ($app) {
 		$app->get('/', 'CityController@getAll');
-		$app->get('getCityByCityName/{cityName}', 'CityController@getCityByCityName');
+		$app->post('getCityByCityName', 'CityController@getCityByCityName');
 		$app->post('getCityById/{id}', 'CityController@getCityById');
 		$app->post('addNewCity', 'CityController@addNewCity');
 		$app->post('updateCityById/{id}', 'CityController@updateCityById');
@@ -43,15 +43,16 @@ $app->group(['prefix' => 'api/v1'], function($app){
 	* Routes for resource person
 	*/
 	$app->group(['prefix' => 'person'], function () use ($app) {
-		$app->get('/', 'PeopleController@getAll');
+		$app->get('/', 'PeopleController@getAll');		
 	});
 	
 	
 	/**
 	* Routes for resource t-user
 	*/
-	$app->group(['prefix' => 't-user'], function () use ($app) {
+	$app->group(['prefix' => 'user'], function () use ($app) {
 		$app->get('/', 'TUsersController@getAll');
+		$app->post('auth', 'TUsersController@userAuth');
 	});
 	
 	

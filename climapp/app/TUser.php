@@ -14,7 +14,7 @@ class TUser extends Model {
 
     public static $rules = [
         "password" => "required",
-        "user_name" => "required|unique:TUser",
+        "user_name" => "required|unique:t_user",
     ];
 
     public $timestamps = false;

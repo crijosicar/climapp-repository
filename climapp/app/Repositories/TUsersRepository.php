@@ -6,7 +6,7 @@ use Bosnadev\Repositories\Eloquent\Repository;
 class TUsersRepository extends Repository {
 
     public function model() {
-        return 'App\TUsers';
+        return 'App\TUser';
     }
     
     

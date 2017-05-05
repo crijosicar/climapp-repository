@@ -13,7 +13,7 @@ class City extends Model {
     protected $dates = ['created_at','updated_at'];
 
     public static $rules = [
-        "code" => "string|unique:City|required",
+        "code" => "string|unique:city|required",
         "id_state" => "integer|required",
         "latitude" => "string|required",
         "longitude" => "string|required",
