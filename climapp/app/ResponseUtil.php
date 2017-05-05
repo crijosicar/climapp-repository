@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class City extends Model {
+class ResponseUtil extends Model {
 
     protected $fillable = ["code", "id_state", "latitude", "longitude", "name"];
 
