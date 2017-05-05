@@ -54,6 +54,7 @@ class CityController extends Controller {
         $city = new City;
         $city->name = $this->util->removeAccents(Input::get('cityName'));
         $MCity = $this->cityRepository->findWhere([ 'name' => $city->name]);
+        
         if(is_null($MCity)){
             return response()->json($MCity, Response::HTTP_NOT_FOUND);
         }

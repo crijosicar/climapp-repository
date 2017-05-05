@@ -23,4 +23,70 @@ class UserAccess extends Model {
 
     // Relationships
     protected $table = 'user_access';
+
+    /**
+     * Set the UserAccess's id.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setIdAttribute($value)
+    {
+        $this->attributes['id'] = strtolower($value);
+    }
+
+    /**
+     * Get the UserAccess's id.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getIdAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
+    /**
+     * Set the UserAccess's id_user.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setIdUserAttribute($value)
+    {
+        $this->attributes['id_user'] = strtolower($value);
+    }
+
+    /**
+     * Get the UserAccess's id_user.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getIdUserAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
+    /**
+     * Set the UserAccess's state_login.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setStateLoginAttribute($value)
+    {
+        $this->attributes['state_login'] = strtolower($value);
+    }
+
+    /**
+     * Get the UserAccess's state_login.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getStateLoginAttribute($value)
+    {
+        return ucfirst($value);
+    }
 }

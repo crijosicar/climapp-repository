@@ -27,11 +27,13 @@ class TUsersController extends Controller {
 	}
 	
 	public function userAuth(Request $request) {
-		$userAuthDTO = $request->json()->all();
         $validator = Validator::make(Input::all(), TUser::$rules);
 		if ($validator->fails()) {
 			return response()->json($validator->messages(), Response::HTTP_NOT_FOUND);
 		}
+
+        $tUser = new TUser;
+        $tUser->name = Input::get('cityName');
 		$MUserAuth = $this->tUsersRepository->findWhere(['user_name' => $userAuthDTO['user_name'], 'password' => $userAuthDTO['password']]);
 		if(is_null($MUserAuth)){
 			return response()->json($MUserAuth, Response::HTTP_NOT_FOUND);
