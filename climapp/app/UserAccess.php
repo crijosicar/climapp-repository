@@ -1,8 +1,11 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class UserAccess extends Model {
+
+    use SoftDeletes;
 
     protected $fillable = ["id_user", "state_login", "state_token", "token"];
 
@@ -10,7 +13,7 @@ class UserAccess extends Model {
     
     protected $primaryKey = 'id';
 
-    protected $dates = ["login_date", "logout_date",'created_at','updated_at'];
+    protected $dates = ["login_date", "logout_date",'created_at','updated_at','deleted_at'];
 
     public static $rules = [
         "id_user" => "required",

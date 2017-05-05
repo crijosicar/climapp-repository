@@ -1,8 +1,11 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ResponseUtil extends Model {
+
+    use SoftDeletes;
 
     protected $fillable = ["code", "id_state", "latitude", "longitude", "name"];
 

@@ -1,8 +1,11 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Person extends Model {
+
+    use SoftDeletes;
 
     protected $fillable = ["email", "id_born_city", "id_gender", "id_state", "last_name", "name", "phone"];
 
@@ -10,7 +13,7 @@ class Person extends Model {
     
     protected $primaryKey = 'id';
 
-    protected $dates = ["birth_date",'created_at','updated_at'];
+    protected $dates = ["birth_date",'created_at','updated_at','deleted_at'];
 
     public static $rules = [
         "birth_date" => "required",

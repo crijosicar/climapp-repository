@@ -1,8 +1,11 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class City extends Model {
+    
+    use SoftDeletes;
 
     protected $fillable = ["code", "id_state", "latitude", "longitude", "name"];
 
@@ -10,7 +13,7 @@ class City extends Model {
 
     protected $primaryKey = 'id';
     
-    protected $dates = ['created_at','updated_at'];
+    protected $dates = ['created_at','updated_at','deleted_at'];
 
     public static $rules = [
         "code" => "string|unique:city|required",
