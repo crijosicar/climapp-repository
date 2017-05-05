@@ -9,6 +9,8 @@ class TUser extends Model {
 
     protected $fillable = ["id_person", "password", "user_name"];
 
+    protected $hidden = ['password'];
+
     protected $guarded = ['id'];
     
     protected $primaryKey = 'id';
