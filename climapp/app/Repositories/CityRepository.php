@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Input;
 use Bosnadev\Repositories\Contracts\RepositoryInterface;
 use Bosnadev\Repositories\Eloquent\Repository;
 use Validator;
+use App\Common\Util;
 use App\City;
 
 class CityRepository extends Repository {
@@ -20,7 +21,8 @@ class CityRepository extends Repository {
 			return response()->json($validator->messages(), Response::HTTP_NOT_FOUND);
 		}
         $city = new City;
-        $city->name = $this->util->removeAccents(Input::get('cityName'));
+        $util = new Util();
+        $city->name = $util->removeAccents(Input::get('cityName'));
         $MCity = $this->findWhere([ 'name' => strtoupper($city->name)]);
         return response()->json($MCity, Response::HTTP_OK);
     }

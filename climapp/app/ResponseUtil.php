@@ -6,37 +6,32 @@ class ResponseUtil extends Model {
 
     protected $fillable = ["message", "object", "objectResponse", "responseList", "tipo", "token"];
 
-    public static $rules = [
-        "tipo" => "integer|required",
-        "message" => "string|required",
-    ];
-
     /**
      * Set the ResponseUtil's message.
      *
-     * @param  string  $value
+     * @param  any  $value
      * @return void
      */
     public function setMessageAttribute($value)
     {
-        $this->attributes['message'] = strtolower($value);
+        $this->attributes['message'] = $value;
     }
 
     /**
      * Get the ResponseUtil's message.
      *
-     * @param  string  $value
+     * @param  any  $value
      * @return string
      */
     public function getMessageAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
      * Set the ResponseUtil's object.
      *
-     * @param  string  $value
+     * @param  object  $value
      * @return void
      */
     public function setObjectAttribute($value)
@@ -47,18 +42,18 @@ class ResponseUtil extends Model {
     /**
      * Get the ResponseUtil's object.
      *
-     * @param  string  $value
+     * @param  object  $value
      * @return string
      */
     public function getObjectAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
      * Set the ResponseUtil's objectResponse.
      *
-     * @param  string  $value
+     * @param  object  $value
      * @return void
      */
     public function setObjectResponseAttribute($value)
@@ -69,18 +64,18 @@ class ResponseUtil extends Model {
     /**
      * Get the ResponseUtil's objectResponse.
      *
-     * @param  string  $value
-     * @return string
+     * @param  object  $value
+     * @return object
      */
     public function getObjectResponseAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
      * Set the ResponseUtil's responseList.
      *
-     * @param  string  $value
+     * @param  array  $value
      * @return void
      */
     public function setResponseListAttribute($value)
@@ -91,12 +86,12 @@ class ResponseUtil extends Model {
     /**
      * Get the ResponseUtil's responseList.
      *
-     * @param  string  $value
+     * @param  array  $value
      * @return string
      */
     public function getResponseListAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
