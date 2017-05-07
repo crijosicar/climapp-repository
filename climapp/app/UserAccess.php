@@ -9,6 +9,8 @@ class UserAccess extends Model {
 
     protected $fillable = ["id_user", "state_login", "state_token", "token"];
 
+    protected $hidden = ['id'];
+
     protected $guarded = ['id'];
     
     protected $primaryKey = 'id';
@@ -133,6 +135,28 @@ class UserAccess extends Model {
      * @return string
      */
     public function getUpdatedAtAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
+    /**
+     * Set the City's deleted_at.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setDeletedAtAttribute($value)
+    {
+        $this->attributes['deleted_at'] = $value;
+    }
+
+    /**
+     * Get the City's deleted_at.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getDeletedAtAttribute($value)
     {
         return ucfirst($value);
     }

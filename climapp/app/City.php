@@ -7,7 +7,9 @@ class City extends Model {
     
     use SoftDeletes;
 
-    protected $fillable = ["code", "id_state", "latitude", "longitude", "name"];
+    protected $fillable = ["code", "id_state", "latitude", "longitude", "name", "value"];
+
+    protected $hidden = ['id'];
 
     protected $guarded = ['id'];
 
@@ -21,6 +23,7 @@ class City extends Model {
         "latitude" => "string|required",
         "longitude" => "string|required",
         "name" => "string|required",
+        "value" => "string|required"
     ];
 
     // Relationships
@@ -199,6 +202,50 @@ class City extends Model {
      * @return string
      */
     public function getUpdatedAtAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
+    /**
+     * Set the City's deleted_at.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setDeletedAtAttribute($value)
+    {
+        $this->attributes['deleted_at'] = $value;
+    }
+
+    /**
+     * Get the City's deleted_at.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getDeletedAtAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
+    /**
+     * Set the City's value.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setValueAtAttribute($value)
+    {
+        $this->attributes['value'] = $value;
+    }
+
+    /**
+     * Get the City's value.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getValueAtAttribute($value)
     {
         return ucfirst($value);
     }

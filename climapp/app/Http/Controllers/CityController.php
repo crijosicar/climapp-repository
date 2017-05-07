@@ -37,13 +37,7 @@ class CityController extends Controller {
     }
     
     public function getCityByCityName(Request $request) {
-        $validator = Validator::make(Input::all(), [ 'cityName' => 'required' ]);
-		if ($validator->fails()) {
-			return response()->json($validator->messages(), Response::HTTP_NOT_FOUND);
-		}
-        $city = new City;
-        $city->name = $this->util->removeAccents(Input::get('cityName'));
-        $MCity = $this->cityRepository->findWhere([ 'name' => $city->name]);
+        $MCity = $this->cityRepository->getCityByName($request);
         return response()->json($MCity, Response::HTTP_OK);
     }
     

@@ -9,6 +9,8 @@ class ValueList extends Model {
 
     protected $fillable = ["category", "description", "value"];
 
+    protected $hidden = ['id'];
+
     protected $guarded = ['id'];
     
     protected $primaryKey = 'id';
@@ -154,6 +156,28 @@ class ValueList extends Model {
      * @return string
      */
     public function getUpdatedAtAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
+    /**
+     * Set the City's deleted_at.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setDeletedAtAttribute($value)
+    {
+        $this->attributes['deleted_at'] = $value;
+    }
+
+    /**
+     * Get the City's deleted_at.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getDeletedAtAttribute($value)
     {
         return ucfirst($value);
     }

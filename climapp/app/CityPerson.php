@@ -9,6 +9,8 @@ class CityPerson extends Model {
 
     protected $fillable = ["id_city", "id_person"];
 
+    protected $hidden = ['id'];
+
     protected $guarded = ['id'];
     
     protected $primaryKey = 'id';
@@ -129,6 +131,28 @@ class CityPerson extends Model {
      * @return string
      */
     public function getUpdatedAtAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
+    /**
+     * Set the City's deleted_at.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setDeletedAtAttribute($value)
+    {
+        $this->attributes['deleted_at'] = $value;
+    }
+
+    /**
+     * Get the City's deleted_at.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getDeletedAtAttribute($value)
     {
         return ucfirst($value);
     }

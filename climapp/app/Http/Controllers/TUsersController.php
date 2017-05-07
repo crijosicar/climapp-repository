@@ -2,11 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Validator;
-use Illuminate\Support\Facades\Input;
 use App\Repositories\TUsersRepository;
 use App\Common\Util;
-use App\TUser;
 
 class TUsersController extends Controller {
 	
@@ -20,18 +17,11 @@ class TUsersController extends Controller {
 	
 	public function getAll() {
 		$MUserAuth = $this->tUsersRepository->all();
-		return response()->json($MCityPerson, Response::HTTP_OK);
+		return response()->json($MUserAuth, Response::HTTP_OK);
 	}
 	
 	public function userAuth(Request $request) {
-        $validator = Validator::make(Input::all(), TUser::$rules);
-		if ($validator->fails()) {
-			return response()->json($validator->messages(), Response::HTTP_NOT_FOUND);
-		}
-        $tUser = new TUser;
-        $tUser->user_name = Input::get('user_name');
-		$tUser->password =  Input::get('password');
-		$MUserAuth = $this->tUsersRepository->findWhere(['user_name' =>  $tUser->user_name, 'password' =>$tUser->password]);
+        $MUserAuth = $this->tUsersRepository->login($request);
 		return response()->json($MUserAuth, Response::HTTP_OK);
 	}
 	
