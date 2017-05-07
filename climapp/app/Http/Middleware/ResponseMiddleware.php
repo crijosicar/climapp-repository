@@ -10,15 +10,12 @@ class ResponseMiddleware {
         // Perform action
         $responseUtil = new ResponseUtil;
         $responseUtil->tipo = $response->getStatusCode();
-        dd($response);
         switch($response->getStatusCode()){
             case 200:
                 $responseUtil->message = "OK";
                 if(is_object($response->getData())){
                     $result = $response->getData();
                     if(isset($result->original)){
-                        $responseUtil->tipo = 300;
-                        $responseUtil->message = "Error, favor revisar los campos.";
                         $responseUtil->object = $result->original;
                         $responseUtil->objectResponse = $result->original;
                     } else {
