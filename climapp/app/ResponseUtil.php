@@ -1,204 +1,144 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ResponseUtil extends Model {
 
-    use SoftDeletes;
-
-    protected $fillable = ["code", "id_state", "latitude", "longitude", "name"];
-
-    protected $guarded = ['id'];
-
-    protected $primaryKey = 'id';
-    
-    protected $dates = ['created_at','updated_at'];
+    protected $fillable = ["message", "object", "objectResponse", "responseList", "tipo", "token"];
 
     public static $rules = [
-        "code" => "string|unique:city|required",
-        "id_state" => "integer|required",
-        "latitude" => "string|required",
-        "longitude" => "string|required",
-        "name" => "string|required",
+        "tipo" => "integer|required",
+        "message" => "string|required",
     ];
 
-    // Relationships
-    protected $table = 'city';
-
     /**
-     * Set the city's id.
+     * Set the ResponseUtil's message.
      *
      * @param  string  $value
      * @return void
      */
-    public function setIdAttribute($value)
+    public function setMessageAttribute($value)
     {
-        $this->attributes['id'] = strtolower($value);
+        $this->attributes['message'] = strtolower($value);
     }
 
     /**
-     * Get the city's id.
+     * Get the ResponseUtil's message.
      *
      * @param  string  $value
      * @return string
      */
-    public function getIdAttribute($value)
+    public function getMessageAttribute($value)
     {
         return ucfirst($value);
     }
 
     /**
-     * Set the city's code.
+     * Set the ResponseUtil's object.
      *
      * @param  string  $value
      * @return void
      */
-    public function setCodeAttribute($value)
+    public function setObjectAttribute($value)
     {
-        $this->attributes['code'] = strtolower($value);
+        $this->attributes['object'] = $value;
     }
 
     /**
-     * Get the city's code.
+     * Get the ResponseUtil's object.
      *
      * @param  string  $value
      * @return string
      */
-    public function getCodeAttribute($value)
+    public function getObjectAttribute($value)
     {
         return ucfirst($value);
     }
 
     /**
-     * Set the city's id_state.
+     * Set the ResponseUtil's objectResponse.
      *
      * @param  string  $value
      * @return void
      */
-    public function setIdStateAttribute($value)
+    public function setObjectResponseAttribute($value)
     {
-        $this->attributes['id_state'] = strtolower($value);
+        $this->attributes['objectResponse'] = $value;
     }
 
     /**
-     * Get the city's id_state.
+     * Get the ResponseUtil's objectResponse.
      *
      * @param  string  $value
      * @return string
      */
-    public function getIdStateAttribute($value)
+    public function getObjectResponseAttribute($value)
     {
         return ucfirst($value);
     }
 
     /**
-     * Set the city's latitude.
+     * Set the ResponseUtil's responseList.
      *
      * @param  string  $value
      * @return void
      */
-    public function setLatitudeAttribute($value)
+    public function setResponseListAttribute($value)
     {
-        $this->attributes['latitude'] = strtolower($value);
+        $this->attributes['responseList'] = $value;
     }
 
     /**
-     * Get the city's latitude.
+     * Get the ResponseUtil's responseList.
      *
      * @param  string  $value
      * @return string
      */
-    public function getLatitudeAttribute($value)
+    public function getResponseListAttribute($value)
     {
         return ucfirst($value);
     }
 
     /**
-     * Set the city's longitude.
+     * Set the ResponseUtil's tipo.
      *
      * @param  string  $value
      * @return void
      */
-    public function setLongitudeAttribute($value)
+    public function setTipoAttribute($value)
     {
-        $this->attributes['longitude'] = strtolower($value);
+        $this->attributes['tipo'] = $value;
     }
 
     /**
-     * Get the city's longitude.
+     * Get the ResponseUtil's tipo.
      *
      * @param  string  $value
      * @return string
      */
-    public function getLongitudeAttribute($value)
-    {
-        return ucfirst($value);
-    }
-    
-    
-    /**
-     * Set the city's name.
-     *
-     * @param  string  $value
-     * @return void
-     */
-    public function setNameAttribute($value)
-    {
-        $this->attributes['name'] = strtolower($value);
-    }
-
-    /**
-     * Get the city's name.
-     *
-     * @param  string  $value
-     * @return string
-     */
-    public function getNameAttribute($value)
+    public function getTipoAttribute($value)
     {
         return ucfirst($value);
     }
 
     /**
-     * Set the city's created_at.
+     * Set the ResponseUtil's token.
      *
      * @param  string  $value
      * @return void
      */
-    public function setCreatedAtAttribute($value)
+    public function setTokenAttribute($value)
     {
-        $this->attributes['created_at'] = strtolower($value);
+        $this->attributes['token'] = $value;
     }
 
     /**
-     * Get the city's created_at.
+     * Get the ResponseUtil's token.
      *
      * @param  string  $value
      * @return string
      */
-    public function getCreatedAtAttribute($value)
-    {
-        return ucfirst($value);
-    }
-
-     /**
-     * Set the city's updated_at.
-     *
-     * @param  string  $value
-     * @return void
-     */
-    public function setUpdatedAtAttribute($value)
-    {
-        $this->attributes['updated_at'] = strtolower($value);
-    }
-
-    /**
-     * Get the city's updated_at.
-     *
-     * @param  string  $value
-     * @return string
-     */
-    public function getUpdatedAtAttribute($value)
+    public function getTokenAttribute($value)
     {
         return ucfirst($value);
     }

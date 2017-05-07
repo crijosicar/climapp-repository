@@ -20,9 +20,6 @@ class TUsersController extends Controller {
 	
 	public function getAll() {
 		$MUserAuth = $this->tUsersRepository->all();
-		if(is_null($MCityPerson)){
-			return response()->json($MCityPerson, Response::HTTP_NOT_FOUND);
-		}
 		return response()->json($MCityPerson, Response::HTTP_OK);
 	}
 	
@@ -31,13 +28,10 @@ class TUsersController extends Controller {
 		if ($validator->fails()) {
 			return response()->json($validator->messages(), Response::HTTP_NOT_FOUND);
 		}
-
         $tUser = new TUser;
-        $tUser->name = Input::get('cityName');
-		$MUserAuth = $this->tUsersRepository->findWhere(['user_name' => $userAuthDTO['user_name'], 'password' => $userAuthDTO['password']]);
-		if(is_null($MUserAuth)){
-			return response()->json($MUserAuth, Response::HTTP_NOT_FOUND);
-		}
+        $tUser->user_name = Input::get('user_name');
+		$tUser->password =  Input::get('password');
+		$MUserAuth = $this->tUsersRepository->findWhere(['user_name' =>  $tUser->user_name, 'password' =>$tUser->password]);
 		return response()->json($MUserAuth, Response::HTTP_OK);
 	}
 	

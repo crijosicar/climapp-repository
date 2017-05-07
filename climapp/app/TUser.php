@@ -22,8 +22,6 @@ class TUser extends Model {
         "user_name" => "required|unique:t_user",
     ];
 
-    public $timestamps = false;
-
     // Relationships
     protected $table = 't_user';
 

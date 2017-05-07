@@ -4,7 +4,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Repositories\UserAccessesRepository;
 
-
 class UserAccessesController extends Controller {
 
     private $userAccessesRepository;
@@ -15,9 +14,6 @@ class UserAccessesController extends Controller {
     
     public function getAll() {
         $MCityPerson = $this->userAccessesRepository->all();
-        if(is_null($MCityPerson)){
-            return response()->json($MCityPerson, Response::HTTP_NOT_FOUND);
-        }
         return response()->json($MCityPerson, Response::HTTP_OK);
     }
     

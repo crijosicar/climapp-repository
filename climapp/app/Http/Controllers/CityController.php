@@ -21,27 +21,18 @@ class CityController extends Controller {
     
     public function getAll() {
         $MCity = $this->cityRepository->all();
-        if(is_null($MCity)){
-            return response()->json($MCity, Response::HTTP_NOT_FOUND);
-        }
         return response()->json($MCity, Response::HTTP_OK);
     }
     
     public function getAllCitiesFromLA() {
         $this->cityRepository->pushCriteria(new CitiesFromLA());
         $MCity = $this->cityRepository->all();
-        if(is_null($MCity)){
-            return response()->json($MCity, Response::HTTP_NOT_FOUND);
-        }
         return response()->json($MCity, Response::HTTP_OK);
     }
     
     public function getCityById(Request $request, $id) {
         $fieldsDTO = count($request->json()->all()) > 0 ? $request->json()->all() : ['*'];
         $MCity = $this->cityRepository->find($id, $fieldsDTO);
-        if(is_null($MCity)){
-            return response()->json($MCity, Response::HTTP_NOT_FOUND);
-        }
         return response()->json($MCity, Response::HTTP_OK);
     }
     
@@ -50,14 +41,9 @@ class CityController extends Controller {
 		if ($validator->fails()) {
 			return response()->json($validator->messages(), Response::HTTP_NOT_FOUND);
 		}
-
         $city = new City;
         $city->name = $this->util->removeAccents(Input::get('cityName'));
         $MCity = $this->cityRepository->findWhere([ 'name' => $city->name]);
-        
-        if(is_null($MCity)){
-            return response()->json($MCity, Response::HTTP_NOT_FOUND);
-        }
         return response()->json($MCity, Response::HTTP_OK);
     }
     
@@ -67,9 +53,6 @@ class CityController extends Controller {
 			return response()->json($validator->messages(), Response::HTTP_NOT_FOUND);
 		}
         $MCity = $this->cityRepository->findAllBy('latitude', $latitude);
-        if(is_null($MCity)){
-            return response()->json($MCity, Response::HTTP_NOT_FOUND);
-        }
         return response()->json($MCity, Response::HTTP_OK);
     }
     
@@ -79,9 +62,6 @@ class CityController extends Controller {
 			return response()->json($validator->messages(), Response::HTTP_NOT_FOUND);
 		}
         $MCity = $this->cityRepository->create($request->all());
-        if(is_null($MCity)){
-            return response()->json($MCity, Response::HTTP_NOT_FOUND);
-        }
         return response()->json($MCity, Response::HTTP_OK);
     }
     
@@ -91,9 +71,6 @@ class CityController extends Controller {
 			return response()->json($validator->messages(), Response::HTTP_NOT_FOUND);
 		}
         $MCity = $this->cityRepository->update($request->all(), $id);
-        if(is_null($MCity)){
-            return response()->json($MCity, Response::HTTP_NOT_FOUND);
-        }
         return response()->json($MCity, Response::HTTP_OK);
     }
 }

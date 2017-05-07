@@ -14,9 +14,6 @@ class ValueListsController extends Controller {
     
     public function getAll() {
         $MCityPerson = $this->valueListsRepository->all();
-        if(is_null($MCityPerson)){
-            return response()->json($MCityPerson, Response::HTTP_NOT_FOUND);
-        }
         return response()->json($MCityPerson, Response::HTTP_OK);
     }
 
