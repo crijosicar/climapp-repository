@@ -14,14 +14,8 @@ class ResponseMiddleware {
             case 200:
                 $responseUtil->message = "OK";
                 if(is_object($response->getData())){
-                    $result = $response->getData();
-                    if(isset($result->original)){
-                        $responseUtil->object = $result->original;
-                        $responseUtil->objectResponse = $result->original;
-                    } else {
-                        $responseUtil->object = $response->getData();
-                        $responseUtil->objectResponse = $response->getData();
-                    }
+                    $responseUtil->object = $response->getData();
+                    $responseUtil->objectResponse = $response->getData();
                     $responseUtil->responseList = "";
                 }
                 if(is_array($response->getData())){

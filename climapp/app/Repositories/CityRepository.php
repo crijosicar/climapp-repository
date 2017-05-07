@@ -18,13 +18,13 @@ class CityRepository extends Repository {
     public function getCityByName(Request $request) {
         $validator = Validator::make(Input::all(), [ 'cityName' => 'required' ]);
 		if ($validator->fails()) {
-			return response()->json($validator->messages(), Response::HTTP_NOT_FOUND);
+			return $validator->messages();
 		}
         $city = new City;
         $util = new Util();
         $city->name = $util->removeAccents(Input::get('cityName'));
         $MCity = $this->findWhere([ 'name' => strtoupper($city->name)]);
-        return response()->json($MCity, Response::HTTP_OK);
+        return $MCity;
     }
     
 }

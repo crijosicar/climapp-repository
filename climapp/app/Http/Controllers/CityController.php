@@ -38,6 +38,7 @@ class CityController extends Controller {
     
     public function getCityByCityName(Request $request) {
         $MCity = $this->cityRepository->getCityByName($request);
+        //dd($MCity);
         return response()->json($MCity, Response::HTTP_OK);
     }
     
