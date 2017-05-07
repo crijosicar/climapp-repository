@@ -3,7 +3,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Repositories\TUsersRepository;
-use App\Common\Util;
 
 class TUsersController extends Controller {
 	
@@ -12,7 +11,6 @@ class TUsersController extends Controller {
 	
 	public function __construct(TUsersRepository $tUsersRepository, Util $util) {
 		$this->tUsersRepository = $tUsersRepository;
-		$this->util = $util;
 	}
 	
 	public function getAll() {
