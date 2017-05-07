@@ -5,7 +5,6 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Input;
 use Bosnadev\Repositories\Contracts\RepositoryInterface;
 use Bosnadev\Repositories\Eloquent\Repository;
-use Validator;
 use App\Common\Util;
 use App\City;
 
@@ -16,10 +15,6 @@ class CityRepository extends Repository {
     }
     
     public function getCityByName(Request $request) {
-        $validator = Validator::make(Input::all(), [ 'cityName' => 'required' ]);
-		if ($validator->fails()) {
-			return $validator->messages();
-		}
         $city = new City;
         $util = new Util();
         $city->name = $util->removeAccents(Input::get('cityName'));

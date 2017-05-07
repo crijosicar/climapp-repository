@@ -24,6 +24,19 @@ class ResponseMiddleware {
                     $responseUtil->responseList = $response->getData();
                 }
             break;
+            case 417:
+                $responseUtil->message = "Error!, favor revisar los campos";
+                if(is_object($response->getData())){
+                    $responseUtil->object = $response->getData();
+                    $responseUtil->objectResponse = $response->getData();
+                    $responseUtil->responseList = "";
+                }
+                if(is_array($response->getData())){
+                    $responseUtil->object = "";
+                    $responseUtil->objectResponse = "";
+                    $responseUtil->responseList = $response->getData();
+                }
+            break;
             default:
                 $responseUtil->object = "";
                 $responseUtil->objectResponse = "";

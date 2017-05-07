@@ -2,14 +2,16 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Validator;
+use Illuminate\Support\Facades\Input;
 use App\Repositories\TUsersRepository;
+use App\TUser;
 
 class TUsersController extends Controller {
 	
 	private $tUsersRepository;
-	private $util;
 	
-	public function __construct(TUsersRepository $tUsersRepository, Util $util) {
+	public function __construct(TUsersRepository $tUsersRepository) {
 		$this->tUsersRepository = $tUsersRepository;
 	}
 	
@@ -19,6 +21,10 @@ class TUsersController extends Controller {
 	}
 	
 	public function userAuth(Request $request) {
+		$validator = Validator::make(Input::all(), TUser::$rules);
+		if ($validator->fails()) {
+            return response()->json($validator->messages(), Response::HTTP_EXPECTATION_FAILED);
+		}
         $MUserAuth = $this->tUsersRepository->login($request);
 		return response()->json($MUserAuth, Response::HTTP_OK);
 	}
