@@ -9,7 +9,7 @@ class CityPerson extends Model {
 
     protected $fillable = ["id_city", "id_person"];
 
-    protected $hidden = ['id'];
+    protected $hidden = ['id','created_at','updated_at','deleted_at'];
 
     protected $guarded = ['id'];
     
@@ -44,7 +44,7 @@ class CityPerson extends Model {
      */
     public function getIdAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -66,7 +66,7 @@ class CityPerson extends Model {
      */
     public function getIdCityAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -88,7 +88,7 @@ class CityPerson extends Model {
      */
     public function getIdPersonAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -110,7 +110,7 @@ class CityPerson extends Model {
      */
     public function getCreatedAtAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -132,7 +132,7 @@ class CityPerson extends Model {
      */
     public function getUpdatedAtAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -154,7 +154,7 @@ class CityPerson extends Model {
      */
     public function getDeletedAtAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
 }

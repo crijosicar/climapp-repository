@@ -9,7 +9,7 @@ class City extends Model {
 
     protected $fillable = ["code", "id_state", "latitude", "longitude", "name", "value"];
 
-    protected $hidden = ['id'];
+    protected $hidden = ['id','created_at','updated_at','deleted_at'];
 
     protected $guarded = ['id'];
 
@@ -37,7 +37,7 @@ class City extends Model {
      */
     public function setIdAttribute($value)
     {
-        $this->attributes['id'] = strtolower($value);
+        $this->attributes['id'] = $value;
     }
 
     /**
@@ -48,7 +48,7 @@ class City extends Model {
      */
     public function getIdAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -59,7 +59,7 @@ class City extends Model {
      */
     public function setCodeAttribute($value)
     {
-        $this->attributes['code'] = strtolower($value);
+        $this->attributes['code'] = $value;
     }
 
     /**
@@ -70,7 +70,7 @@ class City extends Model {
      */
     public function getCodeAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -81,7 +81,7 @@ class City extends Model {
      */
     public function setIdStateAttribute($value)
     {
-        $this->attributes['id_state'] = strtolower($value);
+        $this->attributes['id_state'] = $value;
     }
 
     /**
@@ -92,7 +92,7 @@ class City extends Model {
      */
     public function getIdStateAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -103,7 +103,7 @@ class City extends Model {
      */
     public function setLatitudeAttribute($value)
     {
-        $this->attributes['latitude'] = strtolower($value);
+        $this->attributes['latitude'] = $value;
     }
 
     /**
@@ -114,7 +114,7 @@ class City extends Model {
      */
     public function getLatitudeAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -125,7 +125,7 @@ class City extends Model {
      */
     public function setLongitudeAttribute($value)
     {
-        $this->attributes['longitude'] = strtolower($value);
+        $this->attributes['longitude'] = $value;
     }
 
     /**
@@ -136,7 +136,7 @@ class City extends Model {
      */
     public function getLongitudeAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
     
     
@@ -148,7 +148,7 @@ class City extends Model {
      */
     public function setNameAttribute($value)
     {
-        $this->attributes['name'] = strtolower($value);
+        $this->attributes['name'] = $value;
     }
 
     /**
@@ -159,7 +159,7 @@ class City extends Model {
      */
     public function getNameAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -181,7 +181,7 @@ class City extends Model {
      */
     public function getCreatedAtAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
      /**
@@ -203,7 +203,7 @@ class City extends Model {
      */
     public function getUpdatedAtAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -225,7 +225,7 @@ class City extends Model {
      */
     public function getDeletedAtAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -247,6 +247,6 @@ class City extends Model {
      */
     public function getValueAtAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 }

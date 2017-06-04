@@ -9,7 +9,7 @@ class Person extends Model {
 
     protected $fillable = ["email", "id_born_city", "id_gender", "id_state", "last_name", "name", "phone"];
 
-    protected $hidden = ['id'];
+    protected $hidden = ['id','birth_date','created_at','updated_at','deleted_at'];
 
     protected $guarded = ['id'];
     
@@ -50,7 +50,7 @@ class Person extends Model {
      */
     public function getIdAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -72,7 +72,7 @@ class Person extends Model {
      */
     public function getEmailAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -94,7 +94,7 @@ class Person extends Model {
      */
     public function getIdBornCityAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -116,7 +116,7 @@ class Person extends Model {
      */
     public function getIdGenderAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -138,7 +138,7 @@ class Person extends Model {
      */
     public function getIdStateAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -160,7 +160,7 @@ class Person extends Model {
      */
     public function getLastNameAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -182,7 +182,7 @@ class Person extends Model {
      */
     public function getNameAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -204,7 +204,7 @@ class Person extends Model {
      */
     public function getPhoneAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -226,7 +226,7 @@ class Person extends Model {
      */
     public function getCreatedAtAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -248,7 +248,7 @@ class Person extends Model {
      */
     public function getUpdatedAtAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -270,7 +270,7 @@ class Person extends Model {
      */
     public function getDeletedAtAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
 }

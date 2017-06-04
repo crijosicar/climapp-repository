@@ -7,7 +7,6 @@ class PeopleRepository extends Repository {
 
     public function model() {
         return 'App\Person';
-    }
-    
+    } 
     
 }

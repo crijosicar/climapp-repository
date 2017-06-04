@@ -13,6 +13,11 @@ class CityRepository extends Repository {
     public function model() {
         return 'App\City';
     }
+
+    public function getCitiesList() {
+        $MCitiesListDTO = City::select('id','value')->get();
+        return $MCitiesListDTO;
+    }
     
     public function getCityByName(Request $request) {
         $city = new City;

@@ -9,5 +9,4 @@ class UserAccessesRepository extends Repository {
         return 'App\UserAccess';
     }
     
-    
 }

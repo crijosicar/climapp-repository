@@ -7,7 +7,6 @@ class CityPersonRepository extends Repository {
 
     public function model() {
         return 'App\CityPerson';
-    }
-    
+    }   
     
 }

@@ -113,7 +113,7 @@ class ResponseUtil extends Model {
      */
     public function getTipoAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -135,6 +135,6 @@ class ResponseUtil extends Model {
      */
     public function getTokenAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 }

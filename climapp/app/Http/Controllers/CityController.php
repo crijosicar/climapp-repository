@@ -23,6 +23,11 @@ class CityController extends Controller {
         $MCity = $this->cityRepository->all();
         return response()->json($MCity, Response::HTTP_OK);
     }
+
+    public function getAllCitiesList() {
+        $MCitiesList = $this->cityRepository->getCitiesList();
+        return response()->json($MCitiesList, Response::HTTP_OK);
+    }
     
     public function getAllCitiesFromLA() {
         $this->cityRepository->pushCriteria(new CitiesFromLA());
@@ -55,7 +60,7 @@ class CityController extends Controller {
     }
     
     public function addNewCity(Request $request){
-        $validator = Validator::make(Input::all(), TUser::$rules);
+        $validator = Validator::make(Input::all(), City::$rules);
 		if ($validator->fails()) {
 			return response()->json($validator->messages(), Response::HTTP_NOT_FOUND);
 		}
@@ -64,7 +69,7 @@ class CityController extends Controller {
     }
     
     public function updateCityById(Request $request, $id){
-        $validator = Validator::make(Input::all(), TUser::$rules);
+        $validator = Validator::make(Input::all(), City::$rules);
 		if ($validator->fails()) {
 			return response()->json($validator->messages(), Response::HTTP_NOT_FOUND);
 		}

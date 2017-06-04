@@ -9,7 +9,7 @@ class TUser extends Model {
 
     protected $fillable = ["id_person", "password", "user_name"];
 
-    protected $hidden = ['password','id'];
+    protected $hidden = ['password','id','created_at','updated_at','deleted_at'];
 
     protected $guarded = ['id'];
     
@@ -44,7 +44,7 @@ class TUser extends Model {
      */
     public function getIdAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -66,7 +66,7 @@ class TUser extends Model {
      */
     public function getIdPersonAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -88,7 +88,7 @@ class TUser extends Model {
      */
     public function getPasswordAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -110,7 +110,7 @@ class TUser extends Model {
      */
     public function getUserNameAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -132,7 +132,7 @@ class TUser extends Model {
      */
     public function getCreatedAtAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -154,7 +154,7 @@ class TUser extends Model {
      */
     public function getUpdatedAtAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -176,6 +176,6 @@ class TUser extends Model {
      */
     public function getDeletedAtAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 }

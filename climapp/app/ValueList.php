@@ -9,7 +9,7 @@ class ValueList extends Model {
 
     protected $fillable = ["category", "description", "value"];
 
-    protected $hidden = ['id'];
+    protected $hidden = ['id','created_at','updated_at','deleted_at'];
 
     protected $guarded = ['id'];
     
@@ -20,7 +20,7 @@ class ValueList extends Model {
     public static $rules = [
         "category" => "required",
         "description" => "required",
-        "value" => "required",
+        "value" => "required|unique:value_list",
     ];
     
     // Relationships
@@ -45,7 +45,7 @@ class ValueList extends Model {
      */
     public function getIdAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -56,7 +56,7 @@ class ValueList extends Model {
      */
     public function setCategoryAttribute($value)
     {
-        $this->attributes['category'] = strtolower($value);
+        $this->attributes['category'] = strtoupper($value);
     }
 
     /**
@@ -67,7 +67,7 @@ class ValueList extends Model {
      */
     public function getCategoryAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -89,7 +89,7 @@ class ValueList extends Model {
      */
     public function getDescriptionAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -100,7 +100,7 @@ class ValueList extends Model {
      */
     public function setValueAttribute($value)
     {
-        $this->attributes['value'] = strtolower($value);
+        $this->attributes['value'] = strtoupper($value);
     }
 
     /**
@@ -111,7 +111,7 @@ class ValueList extends Model {
      */
     public function getValueAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     
@@ -135,7 +135,7 @@ class ValueList extends Model {
      */
     public function getCreatedAtAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -157,7 +157,7 @@ class ValueList extends Model {
      */
     public function getUpdatedAtAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -179,6 +179,6 @@ class ValueList extends Model {
      */
     public function getDeletedAtAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 }

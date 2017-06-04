@@ -10,20 +10,18 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
-$app->get('/', function () use ($app) {
-	return $app->version();
-});
+$app->get('/', 'AppController@getAppVersion');
 
 $app->group(['prefix' => 'api/v1'], function($app){
-	$app->get('/', function () use ($app) {
-		return $app->version();
-	});
+	
+	$app->get('/', 'AppController@getAppVersion');;
 	
 	/**
 	* Routes for resource city
 	*/
 	$app->group(['prefix' => 'city'], function () use ($app) {
 		$app->get('/', 'CityController@getAll');
+		$app->get('/getAllCities', 'CityController@getAllCitiesList');
 		$app->post('getCityByCityName', 'CityController@getCityByCityName');
 		$app->post('getCityById/{id}', 'CityController@getCityById');
 		$app->post('addNewCity', 'CityController@addNewCity');
@@ -69,5 +67,7 @@ $app->group(['prefix' => 'api/v1'], function($app){
     */
 	$app->group(['prefix' => 'value-list'], function () use ($app) {
 		$app->get('/', 'ValueListsController@getAll');
+		$app->get('/findByCategory/{category}', 'ValueListsController@findByCategory');
+		$app->post('/addNewValueList', 'ValueListsController@addNewValueList');
 	});
 });

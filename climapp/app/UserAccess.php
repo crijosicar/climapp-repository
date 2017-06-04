@@ -9,7 +9,7 @@ class UserAccess extends Model {
 
     protected $fillable = ["id_user", "state_login", "state_token", "token"];
 
-    protected $hidden = ['id'];
+    protected $hidden = ['id','login_date', 'logout_date','created_at','updated_at','deleted_at'];
 
     protected $guarded = ['id'];
     
@@ -48,7 +48,7 @@ class UserAccess extends Model {
      */
     public function getIdAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -70,7 +70,7 @@ class UserAccess extends Model {
      */
     public function getIdUserAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -92,7 +92,7 @@ class UserAccess extends Model {
      */
     public function getStateLoginAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -114,7 +114,7 @@ class UserAccess extends Model {
      */
     public function getCreatedAtAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -136,7 +136,7 @@ class UserAccess extends Model {
      */
     public function getUpdatedAtAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 
     /**
@@ -158,6 +158,6 @@ class UserAccess extends Model {
      */
     public function getDeletedAtAttribute($value)
     {
-        return ucfirst($value);
+        return $value;
     }
 }
