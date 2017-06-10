@@ -20,6 +20,19 @@ class ValueListsController extends Controller {
         return response()->json($MValueList, Response::HTTP_OK);
     }
 
+    public function getAllValuesByCategoryList($category) {
+        try{
+            $validator = Validator::make(['category' => $category], ['category' => 'required']);
+            if ($validator->fails()) {
+                return response()->json($validator->messages(), Response::HTTP_NOT_FOUND);
+            }
+            $MValueList = $this->valueListsRepository->findAllBy('category', $category, ['id', 'description']);
+            return response()->json($MValueList, Response::HTTP_OK);
+        }catch(Exception $e){
+            return $e->getMessage();
+        }
+    }
+
     public function addNewValueList(Request $request) {
         $validator = Validator::make(Input::all(), ValueList::$rules);
 		if ($validator->fails()) {

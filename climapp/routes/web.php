@@ -67,6 +67,7 @@ $app->group(['prefix' => 'api/v1'], function($app){
     */
 	$app->group(['prefix' => 'value-list'], function () use ($app) {
 		$app->get('/', 'ValueListsController@getAll');
+		$app->get('/getAllValuesByCategory/{category}', 'ValueListsController@getAllValuesByCategoryList');
 		$app->get('/findByCategory/{category}', 'ValueListsController@findByCategory');
 		$app->post('/addNewValueList', 'ValueListsController@addNewValueList');
 	});

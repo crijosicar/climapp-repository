@@ -15,7 +15,7 @@ class ResponseMiddleware {
         } else {
             $response = $next($request);
         }
-
+        
         $responseUtil = new ResponseUtil;
         $responseUtil->tipo = $response->getStatusCode();
         switch($response->getStatusCode()){
@@ -62,10 +62,9 @@ class ResponseMiddleware {
 
         return response($responseUtil)
             ->withHeaders([
-                'Content-Type' => 'json',
-                'Access-Control-Allow-Methods' =>  'OPTIONS, HEAD, GET, POST, PUT, DELETE',
+                'Access-Control-Allow-Methods' => 'GET, POST',
                 'Access-Control-Allow-Headers' =>  $request->header('Access-Control-Request-Headers'),
-                'Access-Control-Allow-Origin', '*'
+                'Access-Control-Allow-Origin' => '*'
             ]);
     }
 }

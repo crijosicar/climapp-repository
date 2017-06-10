@@ -3,6 +3,7 @@
 use Bosnadev\Repositories\Contracts\RepositoryInterface;
 use Bosnadev\Repositories\Eloquent\Repository;
 use Illuminate\Support\Facades\Input;
+use App\ValueList;
 use App\Common\Util;
 
 class ValueListsRepository extends Repository {

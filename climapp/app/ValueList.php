@@ -9,7 +9,7 @@ class ValueList extends Model {
 
     protected $fillable = ["category", "description", "value"];
 
-    protected $hidden = ['id','created_at','updated_at','deleted_at'];
+    protected $hidden = ['created_at','updated_at','deleted_at'];
 
     protected $guarded = ['id'];
     

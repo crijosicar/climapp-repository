@@ -9,7 +9,7 @@ class Person extends Model {
 
     protected $fillable = ["email", "id_born_city", "id_gender", "id_state", "last_name", "name", "phone"];
 
-    protected $hidden = ['id','birth_date','created_at','updated_at','deleted_at'];
+    protected $hidden = ['birth_date','created_at','updated_at','deleted_at'];
 
     protected $guarded = ['id'];
     

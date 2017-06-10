@@ -9,7 +9,7 @@ class UserAccess extends Model {
 
     protected $fillable = ["id_user", "state_login", "state_token", "token"];
 
-    protected $hidden = ['id','login_date', 'logout_date','created_at','updated_at','deleted_at'];
+    protected $hidden = ['login_date', 'logout_date','created_at','updated_at','deleted_at'];
 
     protected $guarded = ['id'];
     

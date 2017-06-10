@@ -9,7 +9,7 @@ class CityPerson extends Model {
 
     protected $fillable = ["id_city", "id_person"];
 
-    protected $hidden = ['id','created_at','updated_at','deleted_at'];
+    protected $hidden = ['created_at','updated_at','deleted_at'];
 
     protected $guarded = ['id'];
     

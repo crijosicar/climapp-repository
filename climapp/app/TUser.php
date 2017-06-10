@@ -9,7 +9,7 @@ class TUser extends Model {
 
     protected $fillable = ["id_person", "password", "user_name"];
 
-    protected $hidden = ['password','id','created_at','updated_at','deleted_at'];
+    protected $hidden = ['password','created_at','updated_at','deleted_at'];
 
     protected $guarded = ['id'];
     

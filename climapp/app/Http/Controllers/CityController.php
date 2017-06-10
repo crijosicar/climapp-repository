@@ -25,8 +25,12 @@ class CityController extends Controller {
     }
 
     public function getAllCitiesList() {
-        $MCitiesList = $this->cityRepository->getCitiesList();
-        return response()->json($MCitiesList, Response::HTTP_OK);
+        try{
+            $MCitiesList = $this->cityRepository->all(['id', 'value']);
+            return response()->json($MCitiesList, Response::HTTP_OK);
+        }catch(Exception $e){
+            return $e->getMessage();
+        }
     }
     
     public function getAllCitiesFromLA() {
