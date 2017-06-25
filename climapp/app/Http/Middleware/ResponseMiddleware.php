@@ -11,15 +11,10 @@ class ResponseMiddleware {
 
     public function handle(Request $request, Closure $next) {
 
-        if ($request->isMethod('OPTIONS')) {
-            $response = new Response();
-        } else {
-            $response = $next($request);
-        }
-
+        $response = $next($request);
+            
         $responseUtil = new ResponseUtil;
         $responseUtil->tipo = $response->getStatusCode();
-        //dd($response);
         switch ($response->getStatusCode()) {
             case 200:
                 $responseUtil->message = "OK";

@@ -21,6 +21,10 @@ $app->group(['prefix' => 'api/v1'], function($app){
 	*/
 	$app->group(['prefix' => 'p'], function () use ($app) {
             $app->get('/city', 'CityController@getAll');
+            $app->get('/city/getAllCities', 'CityController@getAllCitiesList');
+            $app->get('/value-list/getAllValuesByCategory/{category}', 'ValueListsController@getAllValuesByCategoryList');
+            $app->post('/person/addNewUser', 'PeopleController@postRegisterNewUser');
+            $app->post('/user/auth', 'TUsersController@userAuth');
 	});
 	
 	/**
@@ -39,7 +43,7 @@ $app->group(['prefix' => 'api/v1'], function($app){
 	/**
 	* Routes for resource city-person
 	*/
-	$app->group(['prefix' => 'city-person'], function () use ($app) {
+	$app->group(['prefix' => 'city-person', 'middleware' => 'auth'], function () use ($app) {
             $app->get('/','CityPersonController@getAll');
 	});
 	
@@ -47,7 +51,7 @@ $app->group(['prefix' => 'api/v1'], function($app){
 	/**
 	* Routes for resource person
 	*/
-	$app->group(['prefix' => 'person'], function () use ($app) {
+	$app->group(['prefix' => 'person', 'middleware' => 'auth'], function () use ($app) {
             $app->get('/', 'PeopleController@getAll');		
             $app->post('/addNewUser', 'PeopleController@postRegisterNewUser');		
 	});
@@ -56,7 +60,7 @@ $app->group(['prefix' => 'api/v1'], function($app){
 	/**
 	* Routes for resource t-user
 	*/
-	$app->group(['prefix' => 'user'], function () use ($app) {
+	$app->group(['prefix' => 'user', 'middleware' => 'auth'], function () use ($app) {
             $app->get('/', 'TUsersController@getAll');
             $app->post('auth', 'TUsersController@userAuth');
 	});
@@ -65,7 +69,7 @@ $app->group(['prefix' => 'api/v1'], function($app){
 	/**
 	* Routes for resource user-access
 	*/
-	$app->group(['prefix' => 'user-access'], function () use ($app) {
+	$app->group(['prefix' => 'user-access', 'middleware' => 'auth'], function () use ($app) {
             $app->get('/', 'UserAccessesController@getAll');
 	});
 	
@@ -73,7 +77,7 @@ $app->group(['prefix' => 'api/v1'], function($app){
 	/**
 	* Routes for resource value-list
         */
-	$app->group(['prefix' => 'value-list'], function () use ($app) {
+	$app->group(['prefix' => 'value-list', 'middleware' => 'auth'], function () use ($app) {
             $app->get('/', 'ValueListsController@getAll');
             $app->get('/getAllValuesByCategory/{category}', 'ValueListsController@getAllValuesByCategoryList');
             $app->get('/findByCategory/{category}', 'ValueListsController@findByCategory');
