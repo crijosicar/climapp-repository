@@ -32,11 +32,10 @@ class AuthServiceProvider extends ServiceProvider
 
         $this->app['auth']->viaRequest('api', function ($request) {
             if ($request->header('Authorization')) {
-                $key = explode(' ',$request->header('Authorization'));
-                $tUser = TUsers::where('api_key', $key[1])->first();
+                $tUser = TUser::where('api_token', $request->header('Authorization'))->first();
                 if(!empty($tUser)){
                     $request->request->add(['userid' => $tUser->id]);
-                }
+                } 
                 return $tUser;
             }
         });

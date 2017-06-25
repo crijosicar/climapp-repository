@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Person;
 use App\TUser;
 use App\CityPerson;
-use App\Http\Controllers\TUsersController;
-use App\Http\Controllers\CityPersonController;
+use App\UserAccess;
+use App\Common\ConstantUtil as States;
 
 class PeopleRepository extends Repository {
 
@@ -35,8 +35,7 @@ class PeopleRepository extends Repository {
             $nPerson->setIdStateAttribute($person['id_state']);
             $nPerson->setLastNameAttribute($person['last_name']);
             $nPerson->setNameAttribute($person['name']);
-            $nPerson->setPhoneAttribute($person['phone']);
-
+            $nPerson->setPhoneAttribute($person['phone']);    
             if ($nPerson->save()) {
                 $nTUser = new TUser;
                 $nTUser->setIdPersonAttribute($nPerson->getIdAttribute());
@@ -45,14 +44,42 @@ class PeopleRepository extends Repository {
                 $nTUser->setPasswordAttribute($password);
                 $nTUser->setTermsAttribute($user['terms']);
                 $nTUser->setApiTokenAttribute(NULL);
-
                 if ($nTUser->save()) {
-                    $cityPersonController = new CityPersonController();
-                    $resultFrecuent = $cityPersonController->saveListFrecuentCityToUser($frecuentCities, $nPerson->getIdAttribute());
+                    $resultFrecuent = true;
+                    foreach ($frecuentCities as $idx => $item) {
+                        $nCityPerson = new CityPerson;
+                        $nCityPerson->setIdCityAttribute($item);
+                        $nCityPerson->setIdPersonAttribute($nPerson->getIdAttribute());
+                        if (!$nCityPerson->save()) {
+                            $resultFrecuent = false;
+                        }
+                    }
                     if ($resultFrecuent) {
-                        $tUsersController = new TUsersController();
-                        $athUser = $tUsersController->getUserToken($nTUser);
-                        return $athUser;
+                        $apikey = base64_encode(str_random(30));
+                        $authTUser = TUser::find($nTUser->getIdAttribute());
+                        $authTUser->setApiTokenAttribute($apikey);
+                        if ($authTUser->save()) {
+                            UserAccess::where('id_user', '=', $authTUser->getIdAttribute())
+                            ->where('state_login', '=', States::STATE_LOGIN_ACTIVE)
+                            ->where('state_token', '=', States::STATE_TOKEN_ACTIVE)
+                            ->update([
+                                'state_login' => States::STATE_LOGIN_INACTIVE, 
+                                'state_token' => States::STATE_TOKEN_INACTIVE
+                            ]);
+                            $userAccess = new UserAccess;
+                            $userAccess->setIdUserAttribute($authTUser->getIdAttribute());
+                            $userAccess->setLoginDateAttribute($authTUser->getUpdatedAtAttribute());
+                            $userAccess->setStateLoginAttribute(States::STATE_LOGIN_ACTIVE);
+                            $userAccess->setStateTokenAttribute(States::STATE_TOKEN_ACTIVE);
+                            $userAccess->setTokenAttribute($authTUser->getApiTokenAttribute());
+                            if ($userAccess->save()) {
+                                return ["token" => $authTUser->getApiTokenAttribute()];
+                            } else {
+                                return NULL;
+                            }
+                        } else {
+                            return NULL;
+                        }
                     } else {
                         return ['error' => 'La lista de ciudades frecuentes no pudo ser guardada.'];
                     }

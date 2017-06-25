@@ -14,18 +14,25 @@ $app->get('/', 'AppController@getAppVersion');
 
 $app->group(['prefix' => 'api/v1'], function($app){
 	
-	$app->get('/', 'AppController@getAppVersion');;
+	$app->get('/', 'AppController@getAppVersion');
+                
+        /**
+	* Routes for public routes
+	*/
+	$app->group(['prefix' => 'p'], function () use ($app) {
+            $app->get('/city', 'CityController@getAll');
+	});
 	
 	/**
 	* Routes for resource city
 	*/
-	$app->group(['prefix' => 'city'], function () use ($app) {
-		$app->get('/', 'CityController@getAll');
-		$app->get('/getAllCities', 'CityController@getAllCitiesList');
-		$app->post('getCityByCityName', 'CityController@getCityByCityName');
-		$app->post('getCityById/{id}', 'CityController@getCityById');
-		$app->post('addNewCity', 'CityController@addNewCity');
-		$app->post('updateCityById/{id}', 'CityController@updateCityById');
+	$app->group(['prefix' => 'city', 'middleware' => 'auth'], function () use ($app) {
+            $app->get('/', 'CityController@getAll');
+            $app->get('getAllCities', 'CityController@getAllCitiesList');
+            $app->post('getCityByCityName', 'CityController@getCityByCityName');
+            $app->post('getCityById/{id}', 'CityController@getCityById');
+            $app->post('addNewCity', 'CityController@addNewCity');
+            $app->post('updateCityById/{id}', 'CityController@updateCityById');
 	});
 	
 
@@ -33,7 +40,7 @@ $app->group(['prefix' => 'api/v1'], function($app){
 	* Routes for resource city-person
 	*/
 	$app->group(['prefix' => 'city-person'], function () use ($app) {
-		$app->get('/','CityPersonController@getAll');
+            $app->get('/','CityPersonController@getAll');
 	});
 	
 	
@@ -41,8 +48,8 @@ $app->group(['prefix' => 'api/v1'], function($app){
 	* Routes for resource person
 	*/
 	$app->group(['prefix' => 'person'], function () use ($app) {
-		$app->get('/', 'PeopleController@getAll');		
-		$app->post('/addNewUser', 'PeopleController@postRegisterNewUser');		
+            $app->get('/', 'PeopleController@getAll');		
+            $app->post('/addNewUser', 'PeopleController@postRegisterNewUser');		
 	});
 	
 	
@@ -50,8 +57,8 @@ $app->group(['prefix' => 'api/v1'], function($app){
 	* Routes for resource t-user
 	*/
 	$app->group(['prefix' => 'user'], function () use ($app) {
-		$app->get('/', 'TUsersController@getAll');
-		$app->post('auth', 'TUsersController@userAuth');
+            $app->get('/', 'TUsersController@getAll');
+            $app->post('auth', 'TUsersController@userAuth');
 	});
 	
 	
@@ -59,26 +66,17 @@ $app->group(['prefix' => 'api/v1'], function($app){
 	* Routes for resource user-access
 	*/
 	$app->group(['prefix' => 'user-access'], function () use ($app) {
-		$app->get('/', 'UserAccessesController@getAll');
+            $app->get('/', 'UserAccessesController@getAll');
 	});
 	
 	
 	/**
 	* Routes for resource value-list
-    */
+        */
 	$app->group(['prefix' => 'value-list'], function () use ($app) {
-		$app->get('/', 'ValueListsController@getAll');
-		$app->get('/getAllValuesByCategory/{category}', 'ValueListsController@getAllValuesByCategoryList');
-		$app->get('/findByCategory/{category}', 'ValueListsController@findByCategory');
-		$app->post('/addNewValueList', 'ValueListsController@addNewValueList');
+            $app->get('/', 'ValueListsController@getAll');
+            $app->get('/getAllValuesByCategory/{category}', 'ValueListsController@getAllValuesByCategoryList');
+            $app->get('/findByCategory/{category}', 'ValueListsController@findByCategory');
+            $app->post('/addNewValueList', 'ValueListsController@addNewValueList');
 	});
 });
-
-/**
- * Routes for resource person-frecuent-city
- */
-$app->get('person-frecuent-city', 'PersonFrecuentCitiesController@all');
-$app->get('person-frecuent-city/{id}', 'PersonFrecuentCitiesController@get');
-$app->post('person-frecuent-city', 'PersonFrecuentCitiesController@add');
-$app->put('person-frecuent-city/{id}', 'PersonFrecuentCitiesController@put');
-$app->delete('person-frecuent-city/{id}', 'PersonFrecuentCitiesController@remove');

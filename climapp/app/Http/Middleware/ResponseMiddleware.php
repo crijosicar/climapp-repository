@@ -19,7 +19,7 @@ class ResponseMiddleware {
 
         $responseUtil = new ResponseUtil;
         $responseUtil->tipo = $response->getStatusCode();
-        dd($response);
+        //dd($response);
         switch ($response->getStatusCode()) {
             case 200:
                 $responseUtil->message = "OK";

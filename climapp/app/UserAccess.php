@@ -59,7 +59,7 @@ class UserAccess extends Model {
      */
     public function setIdUserAttribute($value)
     {
-        $this->attributes['id_user'] = strtolower($value);
+        $this->attributes['id_user'] = $value;
     }
 
     /**
@@ -72,6 +72,50 @@ class UserAccess extends Model {
     {
         return $this->attributes['id_user'];
     }
+    
+    /**
+     * Set the UserAccess's login_date.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setLoginDateAttribute($value)
+    {
+        $this->attributes['login_date'] = $value;
+    }
+
+    /**
+     * Get the UserAccess's login_date.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getLoginDateAttribute()
+    {
+        return $this->attributes['login_date'];
+    }
+    
+    /**
+     * Set the UserAccess's logout_date.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setLogoutDateAttribute($value)
+    {
+        $this->attributes['logout_date'] = $value;
+    }
+
+    /**
+     * Get the UserAccess's logout_date.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getLogoutDateAttribute()
+    {
+        return $this->attributes['logout_date'];
+    }
 
     /**
      * Set the UserAccess's state_login.
@@ -81,7 +125,7 @@ class UserAccess extends Model {
      */
     public function setStateLoginAttribute($value)
     {
-        $this->attributes['state_login'] = strtolower($value);
+        $this->attributes['state_login'] = $value;
     }
 
     /**
@@ -93,6 +137,50 @@ class UserAccess extends Model {
     public function getStateLoginAttribute()
     {
         return $this->attributes['state_login'];
+    }
+    
+    /**
+     * Set the UserAccess's state_token.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setStateTokenAttribute($value)
+    {
+        $this->attributes['state_token'] = $value;
+    }
+
+    /**
+     * Get the UserAccess's state_token.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getStateTokenAttribute()
+    {
+        return $this->attributes['state_token'];
+    }
+    
+    /**
+     * Set the UserAccess's token.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setTokenAttribute($value)
+    {
+        $this->attributes['token'] = $value;
+    }
+
+    /**
+     * Get the UserAccess's token.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getTokenAttribute()
+    {
+        return $this->attributes['token'];
     }
 
     /**
@@ -140,7 +228,7 @@ class UserAccess extends Model {
     }
 
     /**
-     * Set the City's deleted_at.
+     * Set the UserAccess's deleted_at.
      *
      * @param  string  $value
      * @return void
@@ -151,7 +239,7 @@ class UserAccess extends Model {
     }
 
     /**
-     * Get the City's deleted_at.
+     * Get the UserAccess's deleted_at.
      *
      * @param  string  $value
      * @return string

@@ -17,7 +17,6 @@ class CityController extends Controller {
     public function __construct(CityRepository $cityRepository, Util $util) {
         $this->cityRepository = $cityRepository;
         $this->util = $util;
-        $this->middleware('auth');
     }
     
     public function getAll() {
@@ -48,36 +47,36 @@ class CityController extends Controller {
     
     public function getCityByCityName(Request $request) {
         $validator = Validator::make(Input::all(), [ 'cityName' => 'required' ]);
-		if ($validator->fails()) {
+        if ($validator->fails()) {
             return response()->json($validator->messages(), Response::HTTP_NOT_FOUND);
-		}
+        }
         $MCity = $this->cityRepository->getCityByName($request);
         return response()->json($MCity, Response::HTTP_OK);
     }
     
     public function getCityByLatitude($latitude) {
         $validator = Validator::make(Input::all(), [ 'cityName' => 'required' ]);
-		if ($validator->fails()) {
-			return response()->json($validator->messages(), Response::HTTP_NOT_FOUND);
-		}
+        if ($validator->fails()) {
+               return response()->json($validator->messages(), Response::HTTP_NOT_FOUND);
+        }
         $MCity = $this->cityRepository->findAllBy('latitude', $latitude);
         return response()->json($MCity, Response::HTTP_OK);
     }
     
     public function addNewCity(Request $request){
         $validator = Validator::make(Input::all(), City::$rules);
-		if ($validator->fails()) {
-			return response()->json($validator->messages(), Response::HTTP_NOT_FOUND);
-		}
+        if ($validator->fails()) {
+            return response()->json($validator->messages(), Response::HTTP_NOT_FOUND);
+        }
         $MCity = $this->cityRepository->create($request->all());
         return response()->json($MCity, Response::HTTP_OK);
     }
     
     public function updateCityById(Request $request, $id){
         $validator = Validator::make(Input::all(), City::$rules);
-		if ($validator->fails()) {
-			return response()->json($validator->messages(), Response::HTTP_NOT_FOUND);
-		}
+        if ($validator->fails()) {
+            return response()->json($validator->messages(), Response::HTTP_NOT_FOUND);
+        }
         $MCity = $this->cityRepository->update($request->all(), $id);
         return response()->json($MCity, Response::HTTP_OK);
     }

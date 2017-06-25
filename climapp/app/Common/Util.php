@@ -1,4 +1,5 @@
-<?php namespace App\Common;
+<?php 
+namespace App\Common;
 
 class Util {
 
