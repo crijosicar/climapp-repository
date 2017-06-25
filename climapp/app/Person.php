@@ -7,7 +7,7 @@ class Person extends Model {
 
     use SoftDeletes;
 
-    protected $fillable = ["email", "id_born_city", "id_gender", "id_state", "last_name", "name", "phone"];
+    protected $fillable = ["email", "id_born_city", "id_gender", "id_state", "lastname", "name", "phone"];
 
     protected $hidden = ['birth_date','created_at','updated_at','deleted_at'];
 
@@ -23,7 +23,7 @@ class Person extends Model {
         "id_born_city" => "required",
         "id_gender" => "required",
         "id_state" => "required",
-        "last_name" => "required",
+        "lastname" => "required",
         "name" => "required",
         "phone" => "required",
     ];
@@ -48,9 +48,9 @@ class Person extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getIdAttribute($value)
+    public function getIdAttribute()
     {
-        return $value;
+        return $this->attributes['id'];
     }
 
     /**
@@ -67,12 +67,11 @@ class Person extends Model {
     /**
      * Get the Person's email.
      *
-     * @param  string  $value
      * @return string
      */
-    public function getEmailAttribute($value)
+    public function getEmailAttribute()
     {
-        return $value;
+        return $this->attributes['email'];
     }
 
     /**
@@ -83,7 +82,7 @@ class Person extends Model {
      */
     public function setIdBornCityAttribute($value)
     {
-        $this->attributes['id_born_city'] = strtolower($value);
+        $this->attributes['id_born_city'] = $value;
     }
 
     /**
@@ -92,9 +91,9 @@ class Person extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getIdBornCityAttribute($value)
+    public function getIdBornCityAttribute()
     {
-        return $value;
+        return $this->attributes['id_born_city'];
     }
 
     /**
@@ -105,7 +104,7 @@ class Person extends Model {
      */
     public function setIdGenderAttribute($value)
     {
-        $this->attributes['id_gender'] = strtolower($value);
+        $this->attributes['id_gender'] = $value;
     }
 
     /**
@@ -114,9 +113,9 @@ class Person extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getIdGenderAttribute($value)
+    public function getIdGenderAttribute()
     {
-        return $value;
+        return $this->attributes['id_gender'];
     }
 
     /**
@@ -127,7 +126,7 @@ class Person extends Model {
      */
     public function setIdStateAttribute($value)
     {
-        $this->attributes['id_state'] = strtolower($value);
+        $this->attributes['id_state'] = $value;
     }
 
     /**
@@ -136,9 +135,9 @@ class Person extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getIdStateAttribute($value)
+    public function getIdStateAttribute()
     {
-        return $value;
+        return $this->attributes['id_state'];
     }
 
     /**
@@ -149,7 +148,7 @@ class Person extends Model {
      */
     public function setLastNameAttribute($value)
     {
-        $this->attributes['last_name'] = strtolower($value);
+        $this->attributes['lastname'] = strtolower($value);
     }
 
     /**
@@ -158,9 +157,9 @@ class Person extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getLastNameAttribute($value)
+    public function getLastNameAttribute()
     {
-        return $value;
+        return $this->attributes['lastname'];
     }
 
     /**
@@ -180,9 +179,9 @@ class Person extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getNameAttribute($value)
+    public function getNameAttribute()
     {
-        return $value;
+        return $this->attributes['name'];
     }
 
     /**
@@ -202,9 +201,31 @@ class Person extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getPhoneAttribute($value)
+    public function getPhoneAttribute()
     {
-        return $value;
+        return $this->attributes['phone'];
+    }
+    
+    /**
+     * Set the Person's birth_date.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setBirthDateAttribute($value)
+    {
+        $this->attributes['birth_date'] = $value;
+    }
+
+    /**
+     * Get the Person's phone.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getBirthDateAttribute()
+    {
+        return $this->attributes['birth_date'];
     }
 
     /**
@@ -224,9 +245,9 @@ class Person extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getCreatedAtAttribute($value)
+    public function getCreatedAtAttribute()
     {
-        return $value;
+        return $this->attributes['created_at'];
     }
 
     /**
@@ -246,9 +267,9 @@ class Person extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getUpdatedAtAttribute($value)
+    public function getUpdatedAtAttribute()
     {
-        return $value;
+        return $this->attributes['updated_at'];
     }
 
     /**
@@ -268,9 +289,9 @@ class Person extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getDeletedAtAttribute($value)
+    public function getDeletedAtAttribute()
     {
-        return $value;
+        return $this->attributes['deleted_at'];
     }
 
 }

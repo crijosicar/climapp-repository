@@ -46,9 +46,9 @@ class UserAccess extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getIdAttribute($value)
+    public function getIdAttribute()
     {
-        return $value;
+        return $this->attributes['id'];
     }
 
     /**
@@ -68,9 +68,9 @@ class UserAccess extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getIdUserAttribute($value)
+    public function getIdUserAttribute()
     {
-        return $value;
+        return $this->attributes['id_user'];
     }
 
     /**
@@ -90,9 +90,9 @@ class UserAccess extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getStateLoginAttribute($value)
+    public function getStateLoginAttribute()
     {
-        return $value;
+        return $this->attributes['state_login'];
     }
 
     /**
@@ -112,9 +112,9 @@ class UserAccess extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getCreatedAtAttribute($value)
+    public function getCreatedAtAttribute()
     {
-        return $value;
+        return $this->attributes['created_at'];
     }
 
     /**
@@ -134,9 +134,9 @@ class UserAccess extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getUpdatedAtAttribute($value)
+    public function getUpdatedAtAttribute()
     {
-        return $value;
+        return $this->attributes['updated_at'];
     }
 
     /**
@@ -156,8 +156,8 @@ class UserAccess extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getDeletedAtAttribute($value)
+    public function getDeletedAtAttribute()
     {
-        return $value;
+        return $this->attributes['deleted_at'];
     }
 }

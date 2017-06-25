@@ -46,9 +46,9 @@ class City extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getIdAttribute($value)
+    public function getIdAttribute()
     {
-        return $value;
+        return $this->attributes['id'];
     }
 
     /**
@@ -68,9 +68,9 @@ class City extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getCodeAttribute($value)
+    public function getCodeAttribute()
     {
-        return $value;
+        return $this->attributes['code'];
     }
 
     /**
@@ -90,9 +90,9 @@ class City extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getIdStateAttribute($value)
+    public function getIdStateAttribute()
     {
-        return $value;
+        return $this->attributes['id_state'];
     }
 
     /**
@@ -112,9 +112,9 @@ class City extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getLatitudeAttribute($value)
+    public function getLatitudeAttribute()
     {
-        return $value;
+        return $this->attributes['latitude'];
     }
 
     /**
@@ -134,9 +134,9 @@ class City extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getLongitudeAttribute($value)
+    public function getLongitudeAttribute()
     {
-        return $value;
+        return $this->attributes['longitude'];
     }
     
     
@@ -157,9 +157,9 @@ class City extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getNameAttribute($value)
+    public function getNameAttribute()
     {
-        return $value;
+        return $this->attributes['name'];
     }
 
     /**
@@ -179,9 +179,9 @@ class City extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getCreatedAtAttribute($value)
+    public function getCreatedAtAttribute()
     {
-        return $value;
+        return $this->attributes['created_at'];
     }
 
      /**
@@ -201,9 +201,9 @@ class City extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getUpdatedAtAttribute($value)
+    public function getUpdatedAtAttribute()
     {
-        return $value;
+        return $this->attributes['updated_at'];
     }
 
     /**
@@ -223,9 +223,9 @@ class City extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getDeletedAtAttribute($value)
+    public function getDeletedAtAttribute()
     {
-        return $value;
+        return $this->attributes['deleted_at'];
     }
 
     /**
@@ -234,7 +234,7 @@ class City extends Model {
      * @param  string  $value
      * @return void
      */
-    public function setValueAtAttribute($value)
+    public function setValueAttribute($value)
     {
         $this->attributes['value'] = $value;
     }
@@ -245,8 +245,8 @@ class City extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getValueAtAttribute($value)
+    public function getValueAttribute()
     {
-        return $value;
+        return $this->attributes['value'];
     }
 }

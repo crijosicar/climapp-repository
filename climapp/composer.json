@@ -9,7 +9,8 @@
         "laravel/lumen-framework": "5.4.*",
         "vlucas/phpdotenv": "~2.2",
         "wn/lumen-generators": "^1.3",
-        "bosnadev/repositories": "0.*"
+        "bosnadev/repositories": "0.*",
+        "doctrine/dbal": "^2.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

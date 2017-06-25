@@ -42,6 +42,7 @@ $app->group(['prefix' => 'api/v1'], function($app){
 	*/
 	$app->group(['prefix' => 'person'], function () use ($app) {
 		$app->get('/', 'PeopleController@getAll');		
+		$app->post('/addNewUser', 'PeopleController@postRegisterNewUser');		
 	});
 	
 	
@@ -72,3 +73,12 @@ $app->group(['prefix' => 'api/v1'], function($app){
 		$app->post('/addNewValueList', 'ValueListsController@addNewValueList');
 	});
 });
+
+/**
+ * Routes for resource person-frecuent-city
+ */
+$app->get('person-frecuent-city', 'PersonFrecuentCitiesController@all');
+$app->get('person-frecuent-city/{id}', 'PersonFrecuentCitiesController@get');
+$app->post('person-frecuent-city', 'PersonFrecuentCitiesController@add');
+$app->put('person-frecuent-city/{id}', 'PersonFrecuentCitiesController@put');
+$app->delete('person-frecuent-city/{id}', 'PersonFrecuentCitiesController@remove');

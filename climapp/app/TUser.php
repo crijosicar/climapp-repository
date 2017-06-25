@@ -2,16 +2,19 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Auth\Authenticatable as AuthenticableTrait;
 
 class TUser extends Model {
 
     use SoftDeletes;
+    use AuthenticableTrait;
 
     protected $fillable = ["id_person", "password", "user_name"];
 
-    protected $hidden = ['password','created_at','updated_at','deleted_at'];
+    protected $hidden = ['password', 'terms', 'api_token', 'created_at', 'updated_at', 'deleted_at'];
 
-    protected $guarded = ['id'];
+    protected $guarded = ['id', 'terms', 'api_token'];
     
     protected $primaryKey = 'id';
     
@@ -42,9 +45,9 @@ class TUser extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getIdAttribute($value)
+    public function getIdAttribute()
     {
-        return $value;
+        return $this->attributes['id'];
     }
 
     /**
@@ -64,9 +67,9 @@ class TUser extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getIdPersonAttribute($value)
+    public function getIdPersonAttribute()
     {
-        return $value;
+        return $this->attributes['id_person'];
     }
 
     /**
@@ -86,9 +89,9 @@ class TUser extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getPasswordAttribute($value)
+    public function getPasswordAttribute()
     {
-        return $value;
+        return $this->attributes['password'];
     }
 
     /**
@@ -108,9 +111,53 @@ class TUser extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getUserNameAttribute($value)
+    public function getUserNameAttribute()
     {
-        return $value;
+        return $this->attributes['user_name'];
+    }
+    
+    /**
+     * Set the TUser's user_name.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setTermsAttribute($value)
+    {
+        $this->attributes['terms'] = $value;
+    }
+
+    /**
+     * Get the TUser's user_name.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getTermsAttribute()
+    {
+        return $this->attributes['terms'];
+    }
+    
+    /**
+     * Set the TUser's api_token.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setApiTokenAttribute($value)
+    {
+        $this->attributes['api_token'] = $value;
+    }
+
+    /**
+     * Get the TUser's api_token.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getApiTokenAttribute()
+    {
+        return $this->attributes['api_token'];
     }
 
     /**
@@ -130,9 +177,9 @@ class TUser extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getCreatedAtAttribute($value)
+    public function getCreatedAtAttribute()
     {
-        return $value;
+        return $this->attributes['created_at'];
     }
 
     /**
@@ -152,9 +199,9 @@ class TUser extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getUpdatedAtAttribute($value)
+    public function getUpdatedAtAttribute()
     {
-        return $value;
+        return $this->attributes['updated_at'];
     }
 
     /**
@@ -174,8 +221,8 @@ class TUser extends Model {
      * @param  string  $value
      * @return string
      */
-    public function getDeletedAtAttribute($value)
+    public function getDeletedAtAttribute()
     {
-        return $value;
+        return $this->attributes['deleted_at'];
     }
 }

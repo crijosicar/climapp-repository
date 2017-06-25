@@ -21,12 +21,34 @@ class TUsersController extends Controller {
 	}
 	
 	public function userAuth(Request $request) {
-		$validator = Validator::make(Input::all(), TUser::$rules);
-		if ($validator->fails()) {
-            return response()->json($validator->messages(), Response::HTTP_);
-		}
-        $MUserAuth = $this->tUsersRepository->login($request);
-		return response()->json($MUserAuth, Response::HTTP_OK);
+
+            $validator = Validator::make(Input::all(), [
+                "password" => "required",
+                "user_name" => "required",
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json($validator->messages(), Response::HTTP_EXPECTATION_FAILED);
+            }
+
+            $MUserAuth = $this->tUsersRepository->login($request);
+
+            if($MUserAuth == NULL){
+                return response()->json("Revisar los datos ingresados.", Response::HTTP_NOT_ACCEPTABLE);
+            }
+		
+            return response()->json($MUserAuth, Response::HTTP_OK);
+	}
+        
+        public function getUserToken(TUser $tUser) {
+
+            $MUserAuth = $this->tUsersRepository->loginByUser($tUser);
+
+            if($MUserAuth == NULL){
+                return response()->json("Revisar los datos ingresados.", Response::HTTP_NOT_ACCEPTABLE);
+            }
+		
+            return response()->json($MUserAuth, Response::HTTP_OK);
 	}
 	
 }

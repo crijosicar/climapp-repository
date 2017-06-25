@@ -17,6 +17,7 @@ class CityController extends Controller {
     public function __construct(CityRepository $cityRepository, Util $util) {
         $this->cityRepository = $cityRepository;
         $this->util = $util;
+        $this->middleware('auth');
     }
     
     public function getAll() {

@@ -64,3 +64,13 @@ $factory->define(App\ValueList::class, function ($faker) {
         // Fields here
     ];
 });
+
+/**
+ * Factory definition for model App\PersonFrecuentCity.
+ */
+$factory->define(App\PersonFrecuentCity::class, function ($faker) {
+    return [
+        'id_city' => $faker->fillable,
+        'id_person' => $faker->fillable,
+    ];
+});

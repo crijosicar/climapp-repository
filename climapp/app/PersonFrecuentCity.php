@@ -3,10 +3,10 @@
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class CityPerson extends Model {
+class PersonFrecuentCity extends Model {
 
     use SoftDeletes;
-
+    
     protected $fillable = ["id_city", "id_person"];
 
     protected $hidden = ['created_at','updated_at','deleted_at'];
@@ -16,17 +16,17 @@ class CityPerson extends Model {
     protected $primaryKey = 'id';
 
     protected $dates = ['created_at','updated_at','deleted_at'];
-
+    
     public static $rules = [
-        "id_city" => "numeric|required",
-        "id_person" => "numeric|required",
+        "id_city" => "numeric",
+        "id_person" => "numeric",
     ];
 
     // Relationships
-    protected $table = 'city_person';
-
+    protected $table = 'person_frecuent_city';
+ 
     /**
-     * Set the CityPerson's id.
+     * Set the PersonFrecuentCity's id.
      *
      * @param  string  $value
      * @return void
@@ -37,7 +37,7 @@ class CityPerson extends Model {
     }
 
     /**
-     * Get the CityPerson's id.
+     * Get the PersonFrecuentCity's id.
      *
      * @param  string  $value
      * @return string
@@ -46,9 +46,9 @@ class CityPerson extends Model {
     {
         return $this->attributes['id'];
     }
-
+    
     /**
-     * Set the CityPerson's id_city.
+     * Set the PersonFrecuentCity's id_city.
      *
      * @param  string  $value
      * @return void
@@ -59,7 +59,7 @@ class CityPerson extends Model {
     }
 
     /**
-     * Get the CityPerson's id_city.
+     * Get the PersonFrecuentCity's id_city.
      *
      * @param  string  $value
      * @return string
@@ -70,7 +70,7 @@ class CityPerson extends Model {
     }
 
     /**
-     * Set the CityPerson's id_person.
+     * Set the PersonFrecuentCity's id_person.
      *
      * @param  string  $value
      * @return void
@@ -81,7 +81,7 @@ class CityPerson extends Model {
     }
 
     /**
-     * Get the CityPerson's id_person.
+     * Get the PersonFrecuentCity's id_person.
      *
      * @param  string  $value
      * @return string
@@ -90,9 +90,9 @@ class CityPerson extends Model {
     {
         return $this->attributes['id_person'];
     }
-
+    
     /**
-     * Set the CityPerson's created_at.
+     * Set the PersonFrecuentCity's created_at.
      *
      * @param  string  $value
      * @return void
@@ -103,7 +103,7 @@ class CityPerson extends Model {
     }
 
     /**
-     * Get the CityPerson's created_at.
+     * Get the PersonFrecuentCity's created_at.
      *
      * @param  string  $value
      * @return string
@@ -113,8 +113,8 @@ class CityPerson extends Model {
         return $this->attributes['created_at'];
     }
 
-    /**
-     * Set the CityPerson's updated_at.
+     /**
+     * Set the PersonFrecuentCity's updated_at.
      *
      * @param  string  $value
      * @return void
@@ -125,7 +125,7 @@ class CityPerson extends Model {
     }
 
     /**
-     * Get the CityPerson's updated_at.
+     * Get the PersonFrecuentCity's updated_at.
      *
      * @param  string  $value
      * @return string
@@ -136,7 +136,7 @@ class CityPerson extends Model {
     }
 
     /**
-     * Set the City's deleted_at.
+     * Set the PersonFrecuentCity's deleted_at.
      *
      * @param  string  $value
      * @return void
@@ -147,7 +147,7 @@ class CityPerson extends Model {
     }
 
     /**
-     * Get the City's deleted_at.
+     * Get the PersonFrecuentCity's deleted_at.
      *
      * @param  string  $value
      * @return string
@@ -156,5 +156,5 @@ class CityPerson extends Model {
     {
         return $this->attributes['deleted_at'];
     }
-
+    
 }
