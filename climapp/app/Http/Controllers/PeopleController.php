@@ -51,8 +51,8 @@ class PeopleController extends Controller {
             ];
 
             $MPerson = $this->peopleRepository->postAddNewPeople($personDTO, $request->input('userDTO'), $request->input('list_frecuent_city'));
-            if(isset($MPerson['error']) || $MPerson == false){
-                return response()->json("Ocurrió un error!.", Response::HTTP_INTERNAL_SERVER_ERROR);
+            if(isset($MPerson['error'])){
+                return response()->json($MPerson['error'], Response::HTTP_INTERNAL_SERVER_ERROR);
             }
             
             return response()->json($MPerson, Response::HTTP_OK);

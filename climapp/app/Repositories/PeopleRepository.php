@@ -23,7 +23,7 @@ class PeopleRepository extends Repository {
      * @param  array  $person
      * @param  array  $user
      * @param  array  $frecuentCities
-     * @return string token
+     * @return array token
      */
     public function postAddNewPeople($person, $user, $frecuentCities) {
         try {
@@ -75,22 +75,26 @@ class PeopleRepository extends Repository {
                             if ($userAccess->save()) {
                                 return ["token" => $authTUser->getApiTokenAttribute()];
                             } else {
-                                return NULL;
+                                return ['error' => 'El acceso a los usuarios no pudo ser actualizado.'];
                             }
                         } else {
-                            return NULL;
+                            return ['error' => 'La autenticación no pudo ser actualizada.'];
                         }
                     } else {
                         return ['error' => 'La lista de ciudades frecuentes no pudo ser guardada.'];
                     }
+                } else {
+                    return ['error' => 'El usuario no pudo ser guardado.'];
                 }
+            } else {
+                return ['error' => 'La persona no pudo ser guardada.'];
             }
         } catch (Illuminate\Database\QueryException $e) {
-            return false;
+            return ['error' => 'Ocurrio un error al guardar los datos.'];
         } catch (PDOException $e) {
-            return false;
+            return ['error' => 'Ocurrio un error al guardar los datos.'];
         } catch (Exception $e) {
-            return false;
+            return ['error' => 'Ocurrio un error al guardar los datos.'];
         }
     }
 }

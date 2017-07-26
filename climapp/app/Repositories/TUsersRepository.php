@@ -21,7 +21,7 @@ class TUsersRepository extends Repository {
     public function login(Request $request) {
         try {
             $tUser = TUser::where('user_name', $request->input('user_name'))->first();
-            if ($tUser != NULL) {
+            if ($tUser) {
                 if (Hash::check($request->input('password'), $tUser->getPasswordAttribute())) {
                     $apikey = base64_encode(str_random(30));
                     $authTUser = TUser::find($tUser->getIdAttribute());
@@ -43,19 +43,23 @@ class TUsersRepository extends Repository {
                         if($userAccess->save()){
                             return ["token" => $authTUser->getApiTokenAttribute()];
                         } else {
-                            return NULL;
+                            return ['error' => 'Ocurrió un error en el sistema.'];
                         }
                     } else {
-                        return NULL;
+                        return ['error' => 'Ocurrió un error en el sistema.'];
                     }
                 } else {
-                    return NULL;
+                    return ['error' => 'Revisar los datos ingresados.'];
                 }
             } else {
-                return NULL;
+                return ['error' => 'Revisar los datos ingresados.'];
             }
+        } catch (Illuminate\Database\QueryException $e) {
+            return ['error' => 'Ocurrió un error en el sistema.'];
+        } catch (PDOException $e) {
+            return ['error' => 'Ocurrió un error en el sistema.'];
         } catch (Exception $e) {
-            return NULL;
+            return ['error' => 'Ocurrió un error en el sistema.'];
         }
     }
 
@@ -81,13 +85,17 @@ class TUsersRepository extends Repository {
                 if($userAccess->save()){
                     return ["token" => $authTUser->getApiTokenAttribute()];
                 } else {
-                    return NULL;
+                    return ['error' => 'Ocurrió un error en el sistema.'];
                 }
             } else {
-                return NULL;
+                return ['error' => 'Ocurrió un error en el sistema.'];
             }
+        } catch (Illuminate\Database\QueryException $e) {
+            return ['error' => 'Ocurrio un error al guardar los datos.'];
+        } catch (PDOException $e) {
+            return ['error' => 'Ocurrio un error al guardar los datos.'];
         } catch (Exception $e) {
-            return NULL;
+            return ['error' => 'Ocurrio un error al guardar los datos.'];
         }
     }
 
