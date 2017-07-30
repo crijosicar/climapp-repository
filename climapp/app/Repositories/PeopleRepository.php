@@ -10,6 +10,7 @@ use App\TUser;
 use App\CityPerson;
 use App\UserAccess;
 use App\Common\ConstantUtil as States;
+use Illuminate\Support\Facades\DB;
 
 class PeopleRepository extends Repository {
 
@@ -26,7 +27,12 @@ class PeopleRepository extends Repository {
      * @return array token
      */
     public function postAddNewPeople($person, $user, $frecuentCities) {
+        DB::beginTransaction();
         try {
+            $terms = $user['terms'];
+            if(!$terms){
+                return ['error' => 'No aceptaron los terminos y condiciones.'];
+            }
             $nPerson = new Person;
             $nPerson->setBirthDateAttribute($person['birth_date']);
             $nPerson->setEmailAttribute($person['email']);
@@ -35,7 +41,7 @@ class PeopleRepository extends Repository {
             $nPerson->setIdStateAttribute($person['id_state']);
             $nPerson->setLastNameAttribute($person['last_name']);
             $nPerson->setNameAttribute($person['name']);
-            $nPerson->setPhoneAttribute($person['phone']);    
+            $nPerson->setPhoneAttribute($person['phone']);  
             if ($nPerson->save()) {
                 $nTUser = new TUser;
                 $nTUser->setIdPersonAttribute($nPerson->getIdAttribute());
@@ -72,29 +78,38 @@ class PeopleRepository extends Repository {
                             $userAccess->setStateLoginAttribute(States::STATE_LOGIN_ACTIVE);
                             $userAccess->setStateTokenAttribute(States::STATE_TOKEN_ACTIVE);
                             $userAccess->setTokenAttribute($authTUser->getApiTokenAttribute());
+                            DB::commit();
                             if ($userAccess->save()) {
                                 return ["token" => $authTUser->getApiTokenAttribute()];
                             } else {
                                 return ['error' => 'El acceso a los usuarios no pudo ser actualizado.'];
+                                DB::rollBack();
                             }
                         } else {
                             return ['error' => 'La autenticación no pudo ser actualizada.'];
+                            DB::rollBack();
                         }
                     } else {
                         return ['error' => 'La lista de ciudades frecuentes no pudo ser guardada.'];
+                        DB::rollBack();
                     }
                 } else {
                     return ['error' => 'El usuario no pudo ser guardado.'];
+                    DB::rollBack();
                 }
             } else {
                 return ['error' => 'La persona no pudo ser guardada.'];
+                DB::rollBack();
             }
-        } catch (Illuminate\Database\QueryException $e) {
+        } catch (\Illuminate\Database\QueryException $e) {
             return ['error' => 'Ocurrio un error al guardar los datos.'];
+            DB::rollBack();
         } catch (PDOException $e) {
             return ['error' => 'Ocurrio un error al guardar los datos.'];
+            DB::rollBack();
         } catch (Exception $e) {
             return ['error' => 'Ocurrio un error al guardar los datos.'];
+            DB::rollBack();
         }
     }
 }

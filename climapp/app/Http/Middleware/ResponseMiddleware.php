@@ -77,12 +77,12 @@ class ResponseMiddleware {
                 $responseUtil->responseList = "";
                 break;
             default:
-                $responseUtil->message = "Error!";
-                $responseUtil->object = "";
-                $responseUtil->objectResponse = "";
-                $responseUtil->responseList = "";
-        }
-        
+                    $responseUtil->message = $response->getData();
+                    $responseUtil->object = "";
+                    $responseUtil->objectResponse = "";
+                    $responseUtil->responseList = "";
+                }
+
         return response($responseUtil)
                 ->withHeaders([
                     'Access-Control-Allow-Methods' => 'GET, POST',
